@@ -56,7 +56,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 ### Phase 4: Shot list and cost (CHECKPOINT C)
 
 1. Write the episode's shot list as code in `episodes/<episode-id>/shots.py`, in the same format as `episodes/ep001/shots.py`. For every shot:
-   - `[AI]`: scene, camera move, light, whether it uses the Jesus character, whether it is a hero shot (2 variants) or standard (1 variant). The prompt itself is built by `jta_visuals.prompts.build_video_prompt()` (and `build_frame_prompt()` for Jesus start frames), never written freehand.
+   - `[AI]`: scene, camera move, light, whether it uses the Jesus character, and whether it is a key shot (checked first and most closely). Every shot gets one version only. The prompt itself is built by `jta_visuals.prompts.build_video_prompt()` (and `build_frame_prompt()` for Jesus start frames), never written freehand.
    - `[ANIM]`: an animation spec for the code renderer (elements, motion, timing, palette).
    - `[TEXT]`: exact wording, reference and background.
    - `[STOCK]`: search terms and licence source. Use only when AI or animation cannot do the job, and only if it passes the ancient-only rule.
@@ -64,7 +64,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 2. Reuse what already exists before generating anything new: check `knowledge/episodes/` and the asset library for animations, music beds and clips that fit. Mark reused shots with `reuse=` so they cost nothing.
 3. Run `python -m jta_visuals.plan episodes/<episode-id>/shots.py`. It validates every prompt and prints the credit estimate. It must pass with zero errors.
 4. The budget is a hard cap of **1,200 Higgsfield credits per episode**, including redos. If the estimate (which adds 30% for redos) is over 1,200, move shots to animation or reuse until it fits, and say what you cut.
-5. Present: shot count by tag, estimated credits, and the hero shots with their prompts for review.
+5. Present: shot count by tag, estimated credits, and the key shots with their prompts for review.
 
 ### Phase 5: Generate and quality-check
 
@@ -88,7 +88,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 ### Phase 7: Package and upload
 
 1. Render the final at full resolution. Check it end to end: no black frames, no audio gaps, sync holds, nothing cut off.
-2. Make 3 thumbnail options following the style bible; recommend one. Thumbnails follow the ancient-only rule too.
+2. Make one thumbnail following the style bible (regenerate only if it fails the check, for example misspelled text). Thumbnails follow the ancient-only rule too.
 3. Write the title (from the approved options), description (summary, chapters, scripture references, sources, links, and the voice disclosure line from Section 6.4), tags and a pinned comment that asks one question to drive replies.
 4. Write an `.srt` caption file from the aligned transcript.
 5. Build the upload pack in `/JTA/Episodes/<episode-id>/final/` (video, thumbnail, captions, description, chapters). The humans upload it as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
@@ -157,7 +157,7 @@ Space and nature shots (stars, galaxies, oceans, islands) are timeless and allow
 
 - Model: Kling 3.0 (`kling3_0`), `mode: "pro"` (1080p), `aspect_ratio: "16:9"`, `duration: 5`, `sound: "off"` (our own audio is added in the edit).
 - Cost measured 2 Nov 2026: **8.75 credits per 5-second clip** (1.75 per second). Start frames 2 credits. Standard mode (7.5) is not true 1080p, so don't use it.
-- Hero shots: 2 variants. Standard shots: 1 variant. The planner adds 30% for redos.
+- **One version per shot, always.** Never generate alternatives to choose between. If a clip fails the check, fix the prompt and regenerate that one shot (up to 3 attempts, then fall back to animation). The planner adds 30% for these redos.
 - If Higgsfield returns a preset suggestion instead of a job, resubmit with `declined_preset_id` set to the suggested preset.
 
 ### 5.4 Prompt formula

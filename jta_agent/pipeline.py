@@ -416,7 +416,7 @@ class Pipeline:
             if self.cfg.use_llm:
                 llm.run_step(
                     f"Phase 7 steps 2, 3 and 6. Write {out}: title, description, tags, pinned comment and 3 Shorts "
-                    f"moments, plus 3 thumbnails in {final_dir}. The description must include these two lines "
+                    f"moments, plus one thumbnail in {final_dir}. The description must include these two lines "
                     f"exactly:\n{self.disclosure}\n{NIV_LINE}\nChapters:\n{self._chapters()}", [out])
                 text = out.read_text()
                 if self.disclosure not in text or NIV_LINE not in text:

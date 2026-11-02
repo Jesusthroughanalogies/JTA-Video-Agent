@@ -21,7 +21,7 @@ class Shot:
     jesus: bool = False          # uses the JTA-Jesus character (two-step generation)
     people: bool = False         # other people in frame (adds the dress rule)
     nature: bool = False         # pure nature or space, no people or buildings
-    hero: bool = False           # 2 variants instead of 1
+    hero: bool = False           # a key shot: checked first and most closely (still ONE version)
     reuse: Optional[str] = None  # job id of an approved clip; costs nothing
     start_frame: Optional[str] = None  # job id of an approved Jesus start frame
     # non-AI fields
@@ -31,7 +31,9 @@ class Shot:
 
     @property
     def variants(self) -> int:
-        return 2 if self.hero else 1
+        # One version per shot, always. A shot is regenerated only when it fails the check,
+        # never to make alternatives to choose between (Matt, 2 Nov 2026: don't waste credits).
+        return 1
 
 
 def build_video_prompt(s: Shot) -> str:

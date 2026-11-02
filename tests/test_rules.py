@@ -60,3 +60,8 @@ if __name__ == "__main__":
         if name.startswith("test_"):
             fn()
             print("ok", name)
+
+
+def test_one_version_per_shot():
+    # Matt, 2 Nov 2026: never generate alternatives to choose between
+    assert ai(hero=True).variants == 1 and ai().variants == 1
