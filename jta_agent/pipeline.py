@@ -314,11 +314,33 @@ class Pipeline:
             self.log("fallback", f"{len(fb)} AI shot(s) need an animation instead: {', '.join(fb)}")
 
     # ------------------------------------------------------------------ 6 assemble, 7 package
+    def _anim_scenes(self):
+        """The episode's animation module (jta_anim/scenes_<episode>.py), or None.
+        Dry runs use plain cards so they stay fast."""
+        if self.p.dry_run:
+            return None
+        import importlib
+        try:
+            return importlib.import_module(f"jta_anim.scenes_{self.p.episode}")
+        except ModuleNotFoundError:
+            return None
+
+    def _anim_file(self, mod, s, slot: dict, words: list, bg: Path | None) -> Path:
+        """Render one [ANIM] or [TEXT] shot to the slot length, synced to its narration words."""
+        out = self.p.media / "anim" / f"{s.id}.mp4"
+        if media.done(out):
+            return out
+        t0, t1 = slot["start"], slot["end"]
+        ws = [(w["w"], round(w["start"] - t0, 3)) for w in words if t0 - 0.05 <= w["start"] < t1]
+        return mod.render_shot(s.id, max(t1 - t0, 0.5), out, words=ws, bg_video=bg)
+
     def _shot_sources(self) -> dict[str, Path]:
-        """Best file per shot id: graded AI clip (v1 if kept, else v2), reused clip, or a card."""
+        """Best file per shot id: graded AI clip, reused clip, rendered animation, or a card."""
         _, shots = load_shots(self.p.shots)
         tl = json.loads((self.p.work / "timeline.json").read_text())
         dur = {s["shot"]: s["end"] - s["start"] for s in tl["slots"]}
+        slots = {s["shot"]: s for s in tl["slots"]}
+        anim = self._anim_scenes()
         inputs = self.p.media / "inputs"
         src: dict[str, Path] = {}
         for s in shots:
@@ -342,6 +364,9 @@ class Pipeline:
             if s.tag == "TEXT" and s.background:
                 bg = self._ai_file(s.background, None)
                 bg = media.grade(bg, self.p.media / "graded" / f"{s.background}.mp4") if bg else None
+            if anim and s.id in anim.REG and s.id in slots:
+                src[s.id] = self._anim_file(anim, s, slots[s.id], tl.get("words", []), bg)
+                continue
             label = s.spec if s.tag == "TEXT" else f"[{s.tag}] {s.id}"
             src[s.id] = media.card(label[:60], self.p.media / "cards" / f"{s.id}.mp4", seconds, self.size, bg)
         return src
@@ -388,11 +413,15 @@ class Pipeline:
 
     def phase_assemble(self) -> None:
         def anims() -> dict:
-            if self.cfg.use_llm:
-                llm.run_step(f"Phase 6 prep: render every [ANIM] and [TEXT] shot in {self.p.shots} to "
-                             f"{self.p.media / 'cards'}/<shot id>.mp4 at 1920x1080, 30 fps, navy and gold "
-                             f"(style bible). Durations from {self.p.work / 'timeline.json'}.", [])
-            return {}
+            # Render every [ANIM] and [TEXT] shot with jta_anim (system prompt 5.5): Egyptian
+            # background, earth palette, captions timed to the narration words.
+            src = self._shot_sources()
+            _, shots = load_shots(self.p.shots)
+            done = [s.id for s in shots if s.tag in ("ANIM", "TEXT") and "anim" in src.get(s.id, Path()).parts]
+            missing = [s.id for s in shots if s.tag in ("ANIM", "TEXT") and s.id not in done]
+            if missing and not self.p.dry_run:
+                self.log("anim", f"no scene for {', '.join(missing)}: placeholder cards used")
+            return {"rendered": len(done), "placeholders": missing}
         self.step("assemble", "animations", anims)
         rough = self.p.media / "review" / "rough_cut.mp4"
         self.step("assemble", "rough_cut", lambda: {"file": str(self._render(self.size, rough)),

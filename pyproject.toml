@@ -6,6 +6,8 @@ requires-python = ">=3.11"
 dependencies = [
   "claude-agent-sdk>=0.2.176",
   "mcp>=2.3.0",
+  "pycairo>=1.25",
+  "numpy>=1.26",
 ]
 
 [project.optional-dependencies]
@@ -19,7 +21,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["jta_agent", "jta_visuals"]
+packages = ["jta_agent", "jta_visuals", "jta_anim"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

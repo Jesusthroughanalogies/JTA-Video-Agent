@@ -200,9 +200,15 @@ No navy, no bright or neon colours, no pure white or pure black. Keep the reels'
 - Every character that appears in both AI footage and animation is drawn to match its AI version: same clothing, colours, hair and build, in the reels' drawn style (thick outlines, flat colours).
 - **Jesus** (matches the JTA-Jesus element, Section 5.2): plain undyed off-white ankle-length tunic, rope belt, dark brown wool mantle over both shoulders to the calves, shoulder-length wavy dark brown hair, brown sandals. As in the AI footage, He is shown from behind, side-on with hair covering the face, or by His hands; never a drawn face.
 - **The Seeker** (the grey-robed man in the AI shots of Ep 1: on the cliff, at the void, before the dials, in the villa hall): plain grey wool robe, short dark beard, short dark hair. He is the viewer's stand-in and recurs across episodes.
-- **The Archer** (from the reels): reuse the reels' design, recoloured to the earth palette only where it sits beside AI footage.
+- **The Archer**: an ancient archer in a dyed tunic and leather cap with a recurve bow (`cast.archer`), in the earth palette.
 - Crowds are simple figures in dyed robes (terracotta, olive, indigo, ochre, stripes); nobody but Jesus wears off-white with a brown mantle.
 - Character designs live as model sheets in `assets/characters/` (front, side, back, hands). The renderer draws from these and never improvises a character. A new recurring character gets a model sheet, approved by the humans, before first use.
+
+**Environment: ancient Egypt, in earth colours (approved 2 Nov 2026).** Every animation sits inside the same temple frame: painted lotus columns at both edges, a khekher frieze along the top and a terracotta zig-zag band along the bottom. Day scenes show a papyrus sky, the sun disc with thin rays, three pyramids, dunes and date palms; the centre stays calm so the teaching reads. Cosmic scenes (the universe, galaxies, the afterglow) use a starfield seen through the same frame. Night scenes darken the same environment. Never a blank or modern background.
+
+**Renderer.** Animations are drawn in code with `jta_anim` (pycairo to H.264, 1920x1080, 30 fps): `theme.py` holds the palette and type, `egypt.py` the environment, `cast.py` the characters, `props.py` the recurring props (dominoes, bronze dials, galaxies, atoms, the three picture frames, the sunrise painting, the scripture card) and `scenes_<episode>.py` one scene per `[ANIM]` and `[TEXT]` shot. Phase 6 renders each shot to its timeline slot and passes the narration word times, so beats and captions land on the words. A `[TEXT]` card with an AI background is composited over the graded clip. Change the look in `theme.py` only. Captions in animations sit on a papyrus strip in a narrow column; scripture and quotes sit on a papyrus card with the reference label (and "NIV" for scripture).
+
+**Ancient-only applies to animation too.** Swap modern props for ancient ones (Ep 1: the paper plane became a carrier pigeon with a sealed scroll). The hook's search bar is the one exception.
 
 ### 5.6 The JTA grade (in the edit)
 

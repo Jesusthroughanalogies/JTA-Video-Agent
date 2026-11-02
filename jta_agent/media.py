@@ -64,18 +64,18 @@ def grade(src: Path, out: Path) -> Path:
 
 
 def card(text: str, out: Path, seconds: float, size: str = "1920x1080", bg: Path | None = None) -> Path:
-    """Navy card with off-white text. Used for [TEXT] cards and dry-run placeholders."""
+    """Plain placeholder card (dark umber, papyrus text) for dry runs and shots with no scene yet."""
     if done(out):
         return out
     safe = text.replace("\\", "\\\\").replace(":", "\\:").replace("'", "’").replace("%", "\\%")
     w = int(size.split("x")[0])
-    draw = (f"drawtext=fontfile={FONT}:text='{safe}':fontcolor=0xF4EFE6:fontsize={w // 32}:"
+    draw = (f"drawtext=fontfile={FONT}:text='{safe}':fontcolor=0xE9DCC0:fontsize={w // 32}:"
             f"x=(w-text_w)/2:y=(h-text_h)/2")
     if bg:
         args = ["-stream_loop", "-1", "-t", f"{seconds:.2f}", "-i", str(bg),
                 "-vf", f"scale={size.replace('x', ':')},eq=brightness=-0.25,{draw}"]
     else:
-        args = ["-f", "lavfi", "-t", f"{seconds:.2f}", "-i", f"color=c=0x0E1A2B:s={size}:r=30", "-vf", draw]
+        args = ["-f", "lavfi", "-t", f"{seconds:.2f}", "-i", f"color=c=0x211812:s={size}:r=30", "-vf", draw]
     return _ff(out, args + ["-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p"])
 
 

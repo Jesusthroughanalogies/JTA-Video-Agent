@@ -24,7 +24,8 @@ cp .env.example .env                       # fill in keys and voice ids; never c
 cp mcp_servers.example.json mcp_servers.json   # Drive + ElevenLabs MCP for Claude; never committed
 ```
 
-Needs ffmpeg, Python 3.11+, and Claude access for the Agent SDK (an API key in `.env`
+Needs ffmpeg, the cairo library (`brew install cairo` or `apt install libcairo2-dev`) for the
+animation renderer `jta_anim`, Python 3.11+, and Claude access for the Agent SDK (an API key in `.env`
 or a logged-in `claude` CLI).
 
 ## Commands
@@ -109,6 +110,7 @@ must equal what was charged.
 | Tool | Status |
 |---|---|
 | File system, shell, web search and fetch | In (Agent SDK built-ins) |
+| jta_anim (pycairo) | In: every [ANIM] and [TEXT] shot, drawn in code (system prompt 5.5); preview with `python -m jta_anim.scenes_ep001 OUT_DIR` |
 | ffmpeg | In: QC frames, the locked grade, rough cut and final render, loudness to -14 LUFS |
 | Image check | In: start, middle and end frames from every clip, checked by Claude |
 | Higgsfield | In (`jta_agent/higgsfield.py`). Status, history, balance and cost checks are built from real replies. The reply to a paid submit hasn't been seen yet, so use `--max-new-jobs 1` the first time. Anything it can't read is resolved from history, never resubmitted. Needs `HIGGSFIELD_MCP_URL` and `HIGGSFIELD_MCP_TOKEN`. |
