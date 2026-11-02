@@ -9,6 +9,10 @@ from jta_visuals.prompts import Shot
 
 EPISODE_ID = "ep001-does-god-exist"
 
+# Ep 1: narration comes from Matt's and Jack's ElevenLabs voice clones (each trained on about
+# an hour of their own reading). There is no personal story in this episode.
+NARRATION = "clones"
+
 S = Shot
 SHOTS = [
     # ---------------- Hook ----------------
@@ -175,9 +179,6 @@ SHOTS = [
       spec="Two scrolls side by side; most lines differ, the same few lines glow gold on both."),
     S("P3-13", "ANIM", "Creative, moral and personal.", spec="All three frames light up as named. music: resolves."),
 
-    # ---------------- Personal story ----------------
-    S("ST-01", "PHOTO", "(own words)", spec="Story photos and footage in story order, slow Ken Burns, warm grade."),
-
     # ---------------- Part 4: the painter steps into the painting ----------------
     S("P4-01", "ANIM", "Arguments can tell you there's a painter.", spec="Back to the sunrise painting, full frame."),
     S("P4-02", "AI", "You can study a painting your whole life and never meet the person who made it.",
@@ -248,3 +249,47 @@ SHOTS = [
       light="Dark storm turning to breaking golden light.", mood="Hope after darkness.", hero=True,
       notes="Then TEXT: NEXT: WHY DOES GOD ALLOW SUFFERING? and end screen."),
 ]
+
+# ---------------- Approved clips (generated and checked 2 Nov 2026) ----------------
+# Higgsfield job ids picked after frame-by-frame checks (start, middle, end). The agent downloads
+# these instead of generating, so they cost nothing more. Alternates kept in Higgsfield history.
+APPROVED = {
+    "H-01": "b60a0d6b-a579-4c70-b1ea-d4bbaa7d0f0a",   # alt 17eddf10
+    "H-04": "306b950a-00d7-4a38-b3c2-f3e766588387",   # redo: first take had a Jesus lookalike with face
+    "P1-04": "210e98e3-cc94-4462-9c5b-7aea94f318de",
+    "P1-05": "28dc82f2-98d1-4b3f-b05c-635d08bd7715",
+    "P1-06": "dab90636-7daa-4c62-8734-cc515aec7e88",
+    "P1-11": "33115b44-f319-4f67-ad82-e86c0cb5d476",
+    "P1-12": "dfa96902-6a7c-4579-8578-4ec6d2b3456f",
+    "P1-16": "af9ccc7d-e8d3-4d58-bae5-5c00ccf93dab",   # redo: first take was a boy in a crowd
+    "P2-01": "b14df2a6-6a4c-4033-96b2-2b9885e97d63",   # alt cc0d4bc8 (central disc looks like a vault)
+    "P2-06a": "87d4571a-40bb-43fd-ada9-2939e43f551d",
+    "P2-07": "ed778631-390c-4d02-b2c8-0cf00bdc9afb",   # redo: first take had tiled roofs
+    "P2-08": "b3a043bf-3f33-42eb-9853-3aa689c4fb94",   # redo: first take showed a small device
+    "P2-09": "732d976f-e900-4382-8e98-6e42fafa743d",
+    "P2-11": "5e1434d5-d5a8-4016-82f7-1aef10470be6",
+    "P2-14": "77c7ed3e-079f-4fca-9088-e18c9556dbb6",
+    "P3-01": "5f1988c1-7f8a-4a22-8174-8ebe75b9de4e",   # alt 09313316
+    "P3-03": "5f1988c1-7f8a-4a22-8174-8ebe75b9de4e",   # same villa clip: EDIT slowly zooms into the fresco
+    "P3-04": "170e420e-99fb-4c56-bf3d-e8f986e3305d",   # redo: first take had other people on the beach
+    "P3-05": "08b01d5e-06c8-4f41-a46a-47887f30ca36",   # alt be76ca50
+    "P3-08": "9e47de7a-3206-4d3d-8054-552208019af3",
+    "P3-12": "f7b7f4bd-0073-4951-b740-29f65910cdb7",
+    "P3-12a": "b8f8ead4-f6bd-435c-9502-d1e12cb2172a",
+    "P4-02": "7250e797-ad8e-456a-a282-b6467e403589",   # v2: the man is visible; v1 had no figure
+    "P4-04": "a78815f4-7710-482d-b4c0-56366c3f06d2",
+    "P4-06": "f412e6aa-afb5-4582-9a54-8e196d38d3e4",   # redo: first take had a small box and a modern door
+    "P4-06a": "e90fe73a-fb37-4e5f-8e85-745796988abb",  # redo: first take had a candle
+    "P4-07": "cbc91c7b-4556-4b45-b215-8c5bdfcd4f6a",   # alt f08f931b
+    "P4-08": "ff01e8f4-5b9c-4628-aee1-d69e73b5d32e",
+    "P4-09": "7b918860-b835-4561-9b23-6502417b76de",   # alt 541e2fa6
+    "P4-10": "1e15c5a7-7112-4e99-be77-2652528562b6",
+    "P4-11": "91600f8a-c0e6-4916-b674-9e2ac5a5c4ef",   # v2: crosses visible
+    "P4-12": "0def719b-bb6b-4b68-9313-bbfdb7882b38",
+    "P4-13": "f9be43a4-e4d7-438d-aa11-c2c22e12c323",
+    "O-03": "75402a1a-9866-4197-bf2e-999632182462",    # redo: both first takes had power lines
+}
+for _s in SHOTS:
+    if _s.id in APPROVED:
+        _s.reuse = APPROVED[_s.id]
+        _s.hero = False

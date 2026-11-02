@@ -133,7 +133,7 @@ def test_no_credits_before_checkpoint_c(episode):
 
 def test_voice_lines_follow_section_6(tmp_path):
     lines = parse_script(ROOT / "episodes" / "ep001" / "script.md")
-    assert len(lines) == 72
+    assert len(lines) == 86  # 72 + the 14 rows added in script v3 (7a, 7b, ...)
     assert {l.speaker for l in lines} == {"MATT", "JACK"}
     assert not any("own words" in l.text or l.part == "story" for l in lines)   # story is never cloned
     assert not any("(music" in l.text or "(pause)" in l.text for l in lines)
@@ -154,14 +154,61 @@ def test_blocked_tools_for_claude():
 
 
 def test_voice_disclosure_is_identical_everywhere():
-    from jta_agent.pipeline import VOICE_DISCLOSURE
+    from jta_agent.pipeline import RECORDED_DISCLOSURE, VOICE_DISCLOSURE
     prompt = (ROOT / "claude" / "video-agent-system-prompt.md").read_text()
     compliance = (ROOT / "knowledge" / "compliance.md").read_text()
-    assert VOICE_DISCLOSURE in prompt, "pipeline line differs from Section 6.3"
-    assert VOICE_DISCLOSURE in compliance, "compliance.md line differs from Section 6.3"
+    clones, story = VOICE_DISCLOSURE.split(" The personal story")
+    story = "The personal story" + story
+    # Section 6.4 gives the clone sentence, the story sentence (only with a live story) and the recorded line
+    for line in (clones, story, RECORDED_DISCLOSURE):
+        assert line in prompt, f"pipeline line differs from Section 6.4: {line}"
+    assert clones in compliance, "compliance.md line differs from Section 6.4"
     assert "Generic or stock AI voices are never used" in compliance
 
 
 def test_only_matt_and_jack_voices_exist():
     from jta_agent.voice import ElevenLabsTTS
     assert set(ElevenLabsTTS().voices) == {"MATT", "JACK"}   # no other voice can be selected
+
+
+# ---- rows like "7a" and recorded narration (Ep 1) ----
+def test_row_key_sorts_inserted_rows():
+    from jta_agent.voice import row_key
+    keys = [row_key(x) for x in ["8", "7b", "7", "12T", "7a"]]
+    assert sorted(keys) == ["07", "07a", "07b", "08", "12"]
+
+
+def test_parser_reads_inserted_rows():
+    from jta_agent.config import REPO
+    from jta_agent.voice import parse_script
+    keys = {l.key for l in parse_script(REPO / "episodes" / "ep001" / "script.md")}
+    assert {"02_part1-07a", "03_part2-06c", "05_part4-06b"} <= keys
+
+
+def test_recorded_episode_needs_part_files_not_story(tmp_path):
+    from jta_agent.pipeline import _missing_inputs
+    meta = {"narration": "recorded", "story": False}
+    for f in ("clip_intro.mp4", "clip_outro.mp4", "story_01.jpg"):
+        (tmp_path / f).write_bytes(b"x")
+    missing = _missing_inputs(tmp_path, meta)
+    assert not any("story.wav" in m for m in missing)
+    assert any(m.startswith("01_hook.wav") for m in missing)
+    for p in ("01_hook", "03_part2", "04_part3", "05_part4", "06_outro"):
+        (tmp_path / f"{p}.wav").write_bytes(b"x")
+    (tmp_path / "02_part1_matt.wav").write_bytes(b"x")
+    (tmp_path / "02_part1_jack.wav").write_bytes(b"x")
+    assert _missing_inputs(tmp_path, meta) == []
+
+
+def test_ep001_uses_clones_without_story():
+    from jta_agent.config import REPO
+    from jta_agent.pipeline import episode_meta
+    assert episode_meta(REPO / "episodes" / "ep001" / "shots.py") == {"narration": "clones", "story": False}
+
+
+def test_ep001_every_ai_shot_has_an_approved_clip():
+    from jta_agent.config import REPO
+    from jta_visuals.plan import load_shots
+    _, shots = load_shots(REPO / "episodes" / "ep001" / "shots.py")
+    missing = [s.id for s in shots if s.tag == "AI" and not s.reuse]
+    assert missing == [], f"AI shots still needing generation: {missing}"

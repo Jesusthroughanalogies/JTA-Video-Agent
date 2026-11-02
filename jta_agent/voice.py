@@ -35,13 +35,25 @@ MAX_VOICE_ATTEMPTS = 3
 class Line:
     key: str        # "02_part1-07"
     part: str       # "02_part1" (file naming from the kit README)
-    row: int
+    row: str        # "07", or "07a" for a row added between 7 and 8 (see row_key)
     speaker: str    # "MATT" | "JACK"
     text: str
 
     @property
     def text_hash(self) -> str:
         return hashlib.sha256(f"{self.speaker}|{self.text}".encode()).hexdigest()[:12]
+
+
+def row_key(label: str) -> str:
+    """Row label from the script or a shot id -> sortable key: "7" -> "07", "7a" -> "07a", "12T" -> "12".
+
+    A trailing capital T marks a text card on the same row (P1-12T), so it shares that row's key.
+    Zero-padded keys sort correctly as strings: "07" < "07a" < "07b" < "08".
+    """
+    m = re.match(r"(\d+)([a-z]?)", label)
+    if not m:
+        raise ValueError(f"not a row label: {label!r}")
+    return f"{int(m.group(1)):02d}{m.group(2)}"
 
 
 def _part_slug(n: int, title: str) -> str:
@@ -74,7 +86,7 @@ def parse_script(path: Path) -> list[Line]:
         if section is None or section == "story" or not raw.startswith("|"):
             continue
         cells = [c.strip() for c in raw.strip().strip("|").split("|")]
-        if len(cells) < 3 or not cells[0].isdigit():
+        if len(cells) < 3 or not re.fullmatch(r"\d+[a-z]?", cells[0]):
             continue
         words = cells[1]
         m = SPEAKER.match(words)
@@ -89,7 +101,8 @@ def parse_script(path: Path) -> list[Line]:
             continue
         if speaker is None:
             raise ValueError(f"{section} row {cells[0]}: no speaker before this line")
-        lines.append(Line(f"{section}-{int(cells[0]):02d}", section, int(cells[0]), speaker, text))
+        row = row_key(cells[0])
+        lines.append(Line(f"{section}-{row}", section, row, speaker, text))
     return lines
 
 
@@ -158,7 +171,7 @@ def generate_voiceover(st: EpisodeState, script: Path, out_dir: Path, backend: V
     for ln in lines:
         control_check()
         entry = vs.setdefault(ln.key, {"status": "pending", "attempts": []})
-        dest = out_dir / ln.part / f"{ln.row:02d}_{ln.speaker.lower()}{backend.ext}"
+        dest = out_dir / ln.part / f"{ln.row}_{ln.speaker.lower()}{backend.ext}"
         fresh = entry["status"] == "done" and entry.get("text_hash") == ln.text_hash \
             and ln.key not in redo and media.done(dest)
         if not fresh:

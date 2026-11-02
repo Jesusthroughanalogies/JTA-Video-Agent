@@ -27,7 +27,7 @@ from .higgsfield import Backend
 from .ledger import Ledger
 from .runtime import Blocked, Control, Log, NeedsApproval, Paused
 from .state import CHECKPOINT_AFTER, PHASES, EpisodeState
-from .voice import FakeVoice, VoiceBackend, generate_voiceover, parse_script
+from .voice import FakeVoice, VoiceBackend, generate_voiceover, parse_script, row_key
 
 GATE_BEFORE = {PHASES[PHASES.index(p) + 1]: cp for p, cp in CHECKPOINT_AFTER.items()}
 PREFIX_PART = {"H": "01_hook", "P1": "02_part1", "P2": "03_part2", "P3": "04_part3",
@@ -40,7 +40,36 @@ NIV_LINE = ("Scripture quotations taken from The Holy Bible, New International V
             "All rights reserved worldwide.")
 VOICE_DISCLOSURE = ("Narration uses AI voice clones of Matt and Jack's own voices, made with their consent. "
                     "The personal story is recorded live.")  # Section 6.3, verbatim
+RECORDED_DISCLOSURE = "Narration is recorded by Matt and Jack in their own voices."  # NARRATION = "recorded"
 STORY_FILES = ("story.wav", "story.mp3", "story.m4a")
+AUDIO_EXTS = (".wav", ".mp3", ".m4a")
+VOICE_PARTS = ["01_hook", "02_part1", "03_part2", "04_part3", "05_part4", "06_outro"]
+
+
+def episode_meta(shots_path: Path) -> dict:
+    """Per-episode settings declared in shots.py.
+
+    NARRATION = "clones" (default): the voiceover is generated from the ElevenLabs clones (Section 6.2).
+    NARRATION = "recorded": Matt and Jack record the whole voiceover themselves (one file per part,
+    or one per part per speaker) and the clones are not used. Ep 1 works this way.
+    The personal story is included only when the shot list has ST- shots.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("episode_meta_shots", shots_path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)  # type: ignore[union-attr]
+    narration = getattr(mod, "NARRATION", "clones")
+    if narration not in ("clones", "recorded"):
+        raise ValueError(f"NARRATION must be 'clones' or 'recorded', not {narration!r}")
+    return {"narration": narration, "story": any(sh.id.startswith("ST-") for sh in mod.SHOTS)}
+
+
+def recorded_files(inputs: Path, part: str) -> list[Path]:
+    """The recorded voiceover for one part: 02_part1.wav, or 02_part1_matt.wav + 02_part1_jack.wav."""
+    for ext in AUDIO_EXTS:
+        if (inputs / f"{part}{ext}").exists():
+            return [inputs / f"{part}{ext}"]
+    return sorted(f for f in inputs.glob(f"{part}_*") if f.suffix in AUDIO_EXTS)
 
 
 class Pipeline:
@@ -51,6 +80,13 @@ class Pipeline:
         self.ledger = Ledger(paths.ledger, cfg.credit_cap)
         self.size = "426x240" if paths.dry_run else "1280x720"
         self.final_size = "426x240" if paths.dry_run else "1920x1080"
+        self.meta = episode_meta(paths.shots) if paths.shots.exists() else {"narration": "clones", "story": True}
+        if self.meta["narration"] == "recorded":
+            self.disclosure = RECORDED_DISCLOSURE
+        elif self.meta["story"]:
+            self.disclosure = VOICE_DISCLOSURE
+        else:  # no live story this episode, so don't claim one (Section 6.3 line, first sentence only)
+            self.disclosure = VOICE_DISCLOSURE.split(" The personal story")[0]
 
     # ------------------------------------------------------------------ driver
     def run(self) -> None:
@@ -120,7 +156,11 @@ class Pipeline:
         inputs = self.p.media / "inputs"
         timeline = self.p.work / "timeline.json"
 
+        recorded = self.meta["narration"] == "recorded"
+
         def voiceover() -> dict:
+            if recorded:
+                return {"note": "NARRATION = recorded: Matt and Jack's own recordings are used, no clones"}
             parts = generate_voiceover(self.st, self.script_path(), voice_dir, self.voice, self.log,
                                        char_cap=_voice_cap(), control_check=self.control.check)
             return {"parts": {k: len(v) for k, v in parts.items()}}
@@ -128,12 +168,12 @@ class Pipeline:
 
         def pull_inputs() -> dict:
             if not self.cfg.use_llm:
-                _fake_inputs(inputs)
+                _fake_inputs(inputs, self.meta)
             else:
                 llm.run_step(
                     f"Download every file in Google Drive /JTA/Episodes/{self.st.data['episode_id']}/inputs/ "
                     f"into {inputs}/ keeping the file names. Then list what you saved.", [])
-            missing = _missing_inputs(inputs)
+            missing = _missing_inputs(inputs, self.meta)
             if missing:
                 raise Blocked("waiting for these files in the Drive inputs folder: " + ", ".join(missing))
             return {"files": sorted(f.name for f in inputs.iterdir())}
@@ -143,7 +183,10 @@ class Pipeline:
             for round_ in range(1, 3):
                 if self.cfg.use_llm:
                     llm.run_step(
-                        f"Phase 3 steps 3 to 5. Transcribe every file in {voice_dir} and the live story in {inputs} "
+                        f"Phase 3 steps 3 to 5. Transcribe "
+                        + (f"the recorded voiceover files in {inputs} (01_hook to 06_outro)" if recorded
+                           else f"every file in {voice_dir}" + (f" and the live story in {inputs}" if self.meta["story"] else ""))
+                        + " "
                         f"with word timestamps, align to {self.script_path()} and the shots in {self.p.shots}, and "
                         f"write {timeline} with keys: slots [{{shot,start,end}}] covering every shot in order, "
                         f"audio [ordered audio file paths], words [{{w,start,end}}], deviations [..], and "
@@ -152,6 +195,9 @@ class Pipeline:
                 else:
                     _write(timeline, json.dumps(self._dry_timeline(voice_dir, inputs), indent=1))
                 issues = json.loads(timeline.read_text()).get("voice_issues", [])
+                if recorded:
+                    return {"round": round_, "note": "recorded narration: flagged lines go to the humans, not regenerated",
+                            "voice_issues": issues}
                 if not issues:
                     return {"round": round_}
                 redo = {i["line"] for i in issues}
@@ -168,12 +214,28 @@ class Pipeline:
         _, shots = load_shots(self.p.shots)
         gap = 0.25
         audio, slots, words, t = [], [], [], 0.0
-        story = next(inputs / f for f in STORY_FILES if (inputs / f).exists())
+        story = next((inputs / f for f in STORY_FILES if (inputs / f).exists()), None)
         order = ["01_hook", "02_part1", "03_part2", "04_part3", "story", "05_part4", "06_outro"]
+        recorded = self.meta["narration"] == "recorded"
+        # Recorded narration: each part's audio is shared out across its rows by word count.
+        rec_share: dict[tuple, tuple] = {}
+        if recorded:
+            for part in VOICE_PARTS:
+                files = recorded_files(inputs, part)
+                if not files:
+                    continue
+                total = sum(media.duration(f) for f in files)
+                # every row with a shot gets a share; rows with no spoken line (a pause) count as 4 words
+                rows = sorted({row_key(sh.id.split("-", 1)[1]) for sh in shots
+                               if PREFIX_PART[sh.id.split("-", 1)[0]] == part})
+                wc = {row: max(1, len(lines[(part, row)].text.split())) if (part, row) in lines else 4
+                      for row in rows}
+                for row in rows:
+                    rec_share[(part, row)] = (files[0], total * wc[row] / sum(wc.values()))
         by_part: dict[str, list] = {}
         for s in shots:
             pre, row = s.id.split("-", 1)
-            by_part.setdefault(PREFIX_PART[pre], []).append((int(re.match(r"\d+", row).group()), s))
+            by_part.setdefault(PREFIX_PART[pre], []).append((row_key(row), s))
         for part in order:
             rows: dict[int, list] = {}
             for row, s in by_part.get(part, []):
@@ -182,11 +244,21 @@ class Pipeline:
                 if part == "story":
                     f = story
                     dur = media.duration(f)
+                elif recorded:
+                    f, dur = rec_share.get((part, row), (None, 2.0))
                 else:
                     ln = lines.get((part, row))
-                    f = voice_dir / part / f"{row:02d}_{ln.speaker.lower()}{self.voice.ext}" if ln else None
+                    f = voice_dir / part / f"{row}_{ln.speaker.lower()}{self.voice.ext}" if ln else None
                     dur = (media.duration(f) + gap) if f else 2.0
-                if f:
+                if f and recorded and part != "story":
+                    if not audio or audio[-1] != str(f):
+                        audio.append(str(f))  # one file per part, added once
+                    text = lines[(part, row)].text if (part, row) in lines else ""
+                    ws = text.split()
+                    for i, w in enumerate(ws):
+                        words.append({"w": w, "start": round(t + i * dur / len(ws), 2),
+                                      "end": round(t + (i + 1) * dur / len(ws), 2)})
+                elif f:
                     audio.append(str(f))
                     text = lines[(part, row)].text if part != "story" else "(live story)"
                     ws = text.split()
@@ -345,9 +417,9 @@ class Pipeline:
                 llm.run_step(
                     f"Phase 7 steps 2, 3 and 6. Write {out}: title, description, tags, pinned comment and 3 Shorts "
                     f"moments, plus 3 thumbnails in {final_dir}. The description must include these two lines "
-                    f"exactly:\n{VOICE_DISCLOSURE}\n{NIV_LINE}\nChapters:\n{self._chapters()}", [out])
+                    f"exactly:\n{self.disclosure}\n{NIV_LINE}\nChapters:\n{self._chapters()}", [out])
                 text = out.read_text()
-                if VOICE_DISCLOSURE not in text or NIV_LINE not in text:
+                if self.disclosure not in text or NIV_LINE not in text:
                     raise Blocked("upload.md is missing the voice disclosure or the NIV line")
             else:
                 _write(out, self._dry_upload_md())
@@ -382,7 +454,7 @@ class Pipeline:
 
     def _dry_upload_md(self) -> str:
         return (f"# Upload pack (dry run)\n\nTitle: Is There a God? 3 Pictures That Explain It\n\n"
-                f"## Description\n\n(summary)\n\nChapters:\n{self._chapters()}\n\n{VOICE_DISCLOSURE}\n\n"
+                f"## Description\n\n(summary)\n\nChapters:\n{self._chapters()}\n\n{self.disclosure}\n\n"
                 f"{NIV_LINE}\n\n## Checklist\n\n- [ ] private\n- [ ] not made for kids\n"
                 f"- [ ] altered or synthetic content: ON\n- [ ] thumbnail\n- [ ] captions.srt\n")
 
@@ -437,10 +509,13 @@ def _voice_cap() -> int:
     return int(os.environ.get("JTA_VOICE_CHAR_CAP", 25000))
 
 
-def _missing_inputs(d: Path) -> list[str]:
+def _missing_inputs(d: Path, meta: dict | None = None) -> list[str]:
+    meta = meta or {"narration": "clones", "story": True}
     need = []
-    if not any((d / f).exists() for f in STORY_FILES):
+    if meta["story"] and not any((d / f).exists() for f in STORY_FILES):
         need.append("story.wav (the live personal story)")
+    if meta["narration"] == "recorded":
+        need += [f"{p}.wav (or {p}_matt.wav + {p}_jack.wav)" for p in VOICE_PARTS if not recorded_files(d, p)]
     for f in ("clip_intro.mp4", "clip_outro.mp4"):
         if not (d / f).exists():
             need.append(f)
@@ -449,9 +524,15 @@ def _missing_inputs(d: Path) -> list[str]:
     return need
 
 
-def _fake_inputs(d: Path) -> None:
+def _fake_inputs(d: Path, meta: dict | None = None) -> None:
+    meta = meta or {"narration": "clones", "story": True}
     d.mkdir(parents=True, exist_ok=True)
-    media.tone(20.0, d / "story.wav", freq=330)
+    if meta["story"]:
+        media.tone(20.0, d / "story.wav", freq=330)
+    if meta["narration"] == "recorded":
+        for i, p in enumerate(VOICE_PARTS):
+            if not recorded_files(d, p):
+                media.tone(20.0 if p not in ("01_hook", "06_outro") else 8.0, d / f"{p}.wav", freq=220 + 20 * i)
     for name in ("clip_intro.mp4", "clip_outro.mp4"):
         if not media.done(d / name):
             media._ff(d / name, ["-f", "lavfi", "-t", "5", "-i", "testsrc2=s=426x240:r=30",

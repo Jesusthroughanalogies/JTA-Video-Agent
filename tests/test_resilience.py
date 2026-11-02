@@ -16,7 +16,7 @@ import pytest
 
 from conftest import ROOT, Run, kill9
 
-PLAN = json.loads((ROOT / "episodes" / "ep001" / "generation_plan.json").read_text())
+PLAN = json.loads((ROOT / "tests" / "fixtures" / "ep_test" / "generation_plan.json").read_text())
 PLAN_COUNT = collections.Counter(s["params"]["prompt"] for s in PLAN["steps"])
 PLAN_CREDITS = sum(s["credits"] for s in PLAN["steps"])
 PLAN_JOBS = len(PLAN["steps"])  # derived from the plan, so the tests follow the shot list
@@ -43,8 +43,14 @@ def audit(r: Run, allow_redos: bool = False) -> dict:
             used = [a for a in j["attempts"] if a.get("job_id")]
             if used:
                 redo[used[0]["prompt"]] += len(used) - 1
-        for prompt, n in per_prompt.items():
-            assert n == PLAN_COUNT[prompt] + redo[prompt], prompt[:60]
+        # a step that fell back without ever being submitted (for example a Jesus clip whose start
+        # frame failed every attempt) is correctly never generated, so it isn't expected on the server
+        skipped = collections.Counter(
+            step["params"]["prompt"] for step in PLAN["steps"]
+            if st["jobs"].get(step["key"], {}).get("status") == "fallback"
+            and not any(a.get("job_id") for a in st["jobs"][step["key"]]["attempts"]))
+        for prompt in set(per_prompt) | set(PLAN_COUNT):
+            assert per_prompt[prompt] == PLAN_COUNT[prompt] + redo[prompt] - skipped[prompt], prompt[:60]
         assert all(len([a for a in j["attempts"] if a.get("job_id")]) <= 3 for j in st["jobs"].values())
     else:
         assert per_prompt == PLAN_COUNT, "some prompt was generated more (or less) often than planned"

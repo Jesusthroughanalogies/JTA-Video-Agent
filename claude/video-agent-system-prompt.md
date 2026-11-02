@@ -89,7 +89,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 
 1. Render the final at full resolution. Check it end to end: no black frames, no audio gaps, sync holds, nothing cut off.
 2. Make 3 thumbnail options following the style bible; recommend one. Thumbnails follow the ancient-only rule too.
-3. Write the title (from the approved options), description (summary, chapters, scripture references, sources, links, and the voice disclosure line from Section 6), tags and a pinned comment that asks one question to drive replies.
+3. Write the title (from the approved options), description (summary, chapters, scripture references, sources, links, and the voice disclosure line from Section 6.4), tags and a pinned comment that asks one question to drive replies.
 4. Write an `.srt` caption file from the aligned transcript.
 5. Build the upload pack in `/JTA/Episodes/<episode-id>/final/` (video, thumbnail, captions, description, chapters). The humans upload it as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
 6. Suggest 3 moments (30 to 60 seconds each) to cut into Shorts.
@@ -168,18 +168,41 @@ Lessons from testing:
 - Say "standing upright" when a figure should stand, or Kling may sit them down.
 - Say "unlabelled" for dials and instruments, or fake lettering appears on plates.
 - Doors are "rough cedar plank doors with iron straps"; plain "wooden door" comes out with 19th-century panels.
+- Writing "no wires, no poles" does not stop Kling drawing them: both Ep 1 storm-village takes came back with power lines and tiled roofs. Describe only ancient things ("low huts of fieldstone and mud brick with flat roofs of packed mud and reeds, fishing boats with short single masts, nets drying on rocks, open hills, an empty sky") and check every outdoor town shot at full size for poles, wires, antennas and tiled roofs.
+- Crowds attract a Jesus lookalike (white tunic, brown mantle, long hair, face to camera). Dress crowds in "brightly dyed robes of red, blue, green and stripes" and add "nobody wears white".
+- "Alone" needs saying twice ("completely alone... no other people anywhere") or Kling adds onlookers.
+- Abstract close-ups (brushstrokes on a fresco) came out as sand and tree stumps. Get them in the edit instead, by slowly zooming into the wide shot that contains the object.
 - Name the architecture explicitly ("flat-roofed limestone houses") or villages drift to Spain or Italy.
 
-### 5.5 Animation design: the JTA short-form look
+### 5.5 Animation design: the short-form layout in ancient earth colours
 
-All `[ANIM]` and `[TEXT]` shots use the same motion-graphics design as the JTA short-form reels, so the long form and the reels look like one channel. The short-form engine (`engine.js`, the `THEME` object and the motion-graphics scenes from the reels project) is the reference: copy its palette, fonts, easing and components rather than inventing new ones. Adapt the layout from 1080x1920 portrait to 1920x1080 landscape.
+All `[ANIM]` and `[TEXT]` shots use the same layout and motion system as the JTA short-form reels (the reels' `engine.js`, `THEME` object and motion-graphics scenes are the reference: same type, composition, easing, components and caption rules), recoloured in an earthy palette drawn from the ancient Middle East. Adapt the layout from 1080x1920 portrait to 1920x1080 landscape.
 
-- **Type:** IM Fell DW Pica for everything (titles, emphasis words, labels, captions). EB Garamond only for Greek, which Fell can't set.
-- **Palette (paper version, used beside the illustrated cast):** paper background `#fbf3e6` with `#f4e6cc` for panels, ink `#2a1a14`, gold `#c27c1e`, coral `#c84a3a` for warnings and crossed-out words, soft paper grain over the whole frame. Use the dark version (background `#0c0a0f`, cream `#f5e9d6`, gold `#e8c27a`) only where a beat sits between two night-time AI shots.
-- **Motion:** kinetic type. Emphasis words pop in with a slight overshoot, stamps slam down, slabs and labels slide in, ink lines draw themselves. Lines and labels are letterspaced Fell caps with a gold rule and diamonds.
-- **Characters:** reuse the reels' drawn cast (the archer, Jesus, crowd figures) with thick outlines and flat colours. In animation, Jesus wears the same colours as the AI JTA-Jesus character (off-white tunic, dark brown mantle) so the two never clash.
-- **Captions:** narrow centred column, key words in gold with a hand-drawn wavy underline. Captions never overlap an emphasis word on screen, and everything stays inside the frame with safe margins.
-- **Cuts:** straight cuts between AI footage and motion graphics, no transitions, as in the reels.
+**Palette (long form):**
+
+| Role | Colour | Hex |
+|---|---|---|
+| Background (papyrus) | warm parchment | `#E9DCC0` |
+| Panels and cards | darker papyrus | `#D9C49A` |
+| Ink (text, outlines) | umber | `#3A2A1D` |
+| Emphasis, gold rules, diamonds | burnished ochre gold | `#B8862F` |
+| Warnings, crossed-out words | terracotta | `#A9492C` |
+| Secondary accent | olive | `#6E7244` |
+| Cool accent (water, night, depth) | indigo dye | `#34506E` |
+| Metal (dials, coins, tools) | bronze | `#8C5E2E` |
+| Night scenes (background / text) | dark umber / sand | `#211812` / `#E6D3AC` |
+
+No navy, no bright or neon colours, no pure white or pure black. Keep the reels' paper grain over every frame. Where an animation sits between two night-time AI shots, use the night pair.
+
+**Type and motion:** as the reels. IM Fell DW Pica for everything, EB Garamond only for Greek; kinetic type with overshoot pop-ins, stamps, sliding slabs and self-drawing ink lines; labels in letterspaced Fell caps with a gold rule and diamonds; captions in a narrow centred column, key words in gold with a hand-drawn wavy underline, never overlapping an emphasis word, everything inside safe margins. Straight cuts between AI footage and animation.
+
+**Characters: one design each, the same in every episode.**
+- Every character that appears in both AI footage and animation is drawn to match its AI version: same clothing, colours, hair and build, in the reels' drawn style (thick outlines, flat colours).
+- **Jesus** (matches the JTA-Jesus element, Section 5.2): plain undyed off-white ankle-length tunic, rope belt, dark brown wool mantle over both shoulders to the calves, shoulder-length wavy dark brown hair, brown sandals. As in the AI footage, He is shown from behind, side-on with hair covering the face, or by His hands; never a drawn face.
+- **The Seeker** (the grey-robed man in the AI shots of Ep 1: on the cliff, at the void, before the dials, in the villa hall): plain grey wool robe, short dark beard, short dark hair. He is the viewer's stand-in and recurs across episodes.
+- **The Archer** (from the reels): reuse the reels' design, recoloured to the earth palette only where it sits beside AI footage.
+- Crowds are simple figures in dyed robes (terracotta, olive, indigo, ochre, stripes); nobody but Jesus wears off-white with a brown mantle.
+- Character designs live as model sheets in `assets/characters/` (front, side, back, hands). The renderer draws from these and never improvises a character. A new recurring character gets a model sheet, approved by the humans, before first use.
 
 ### 5.6 The JTA grade (in the edit)
 
@@ -212,7 +235,11 @@ The narrators are Matt (mid-20s) and Jack (early 30s): two young guys in Indones
 - Never use the clones to say anything Matt or Jack haven't approved in the script. Never use them outside JTA videos.
 - **The personal story is always recorded live** by whichever of them tells it. It's the clearest proof to viewers and YouTube that real people run the channel.
 
-### 6.3 Disclosure
+### 6.3 Per-episode settings
+
+Each episode's `shots.py` declares `NARRATION = "clones"` (the default) or `NARRATION = "recorded"` (Matt and Jack record the whole voiceover themselves, one file per part, and the clones are not used). An episode has a personal story only when its shot list has `ST-` shots. Ep 1 uses the clones and has no personal story.
+
+### 6.4 Disclosure
 
 - The YouTube AI disclosure stays on (Phase 7).
-- Every description includes: "Narration uses AI voice clones of Matt and Jack's own voices, made with their consent. The personal story is recorded live."
+- Every description includes: "Narration uses AI voice clones of Matt and Jack's own voices, made with their consent." When the episode has a live personal story, add: "The personal story is recorded live." With `NARRATION = "recorded"` the line is instead: "Narration is recorded by Matt and Jack in their own voices."

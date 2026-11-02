@@ -11,17 +11,21 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+FIXTURE = ROOT / "tests" / "fixtures" / "ep_test"
 sys.path.insert(0, str(ROOT))
 
 
 @pytest.fixture
 def episode():
-    """A throwaway copy of ep001 (shots, plan, script) under episodes/_test_xxxx."""
+    """A throwaway copy of the test fixture episode (shots, plan, script) under episodes/_test_xxxx.
+
+    The fixture is a frozen copy of Ep 1 with nothing pre-generated, so these tests keep working
+    after real episodes have their clips approved (which leaves nothing to generate)."""
     name = f"_test_{uuid.uuid4().hex[:8]}"
     d = ROOT / "episodes" / name
     d.mkdir(parents=True)
     for f in ("shots.py", "generation_plan.json", "script.md"):
-        shutil.copy(ROOT / "episodes" / "ep001" / f, d / f)
+        shutil.copy(FIXTURE / f, d / f)
     yield name
     shutil.rmtree(d, ignore_errors=True)
 

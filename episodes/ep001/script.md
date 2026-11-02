@@ -1,4 +1,4 @@
-<!-- Exported from the Claude Doc 'Long-form Ep 1: Does God Exist? (Script)' rev 64 on 2026-11-02. The doc is the source of truth; re-export it into this file after edits. -->
+<!-- Exported from the Claude Doc 'Long-form Ep 1: Does God Exist? (Script)' rev 70 on 2026-11-02. The doc is the source of truth; re-export it into this file after edits. -->
 
 # Long-form Ep 1: Does God Exist? (Script)
 
@@ -115,23 +115,6 @@ Music and sound cues are marked *(music: …)* and *(sfx: …)*. A new shot roug
 | 12b | On the details, sure. But as C.S. Lewis pointed out, no culture has ever admired running away in battle, or betraying the friends who trust you. Deep down, the rules match. | [ANIM] Two scrolls side by side; most lines differ, but the same few lines glow gold on both. |
 | 13 | **MATT:** So, three pictures. Something started it all. Someone set the dials. And whoever it was is a painter: creative, moral and personal. | [ANIM] All three frames side by side, each lighting up as named. *(music: resolves)* |
 
-## Personal story (9:15 to 10:30)
-
-The one stretch of the video that's unmistakably yours, and the strongest signal to YouTube that a real person is behind the channel. One of you records 60 to 75 seconds of voiceover in your own words; it plays over your real photos and footage.
-
-| # | Words | Visual |
-|---|---|---|
-| 1 | **MATT or JACK:** *(own words, see prompts)* | [PHOTO] Your photos and footage in story order, slow Ken Burns moves, warm film grade. [AI] only to bridge gaps, never to fake a real memory. *(music: soft, personal)* |
-
-Prompts:
-
-- Did you ever doubt God existed, or just not care? What did you believe instead?
-- Was there an argument or a moment that made you take it seriously? (It's fine if it wasn't an argument at all.)
-- Where did knowing *about* God turn into knowing God?
-- Close with something like: "The arguments got me to the door. But I didn't walk through it because of dominoes."
-
-Drop the photos that match your story into the Drive, named in the order you mention them.
-
 ## Part 4: The painter steps into the painting (10:30 to 12:45)
 
 Jesus is shown from behind, in silhouette or by His hands. Every Jesus shot is built from the saved JTA-Jesus character in Higgsfield, so He looks the same in every shot and every episode.
@@ -171,7 +154,7 @@ Your total time for this video is about 90 minutes: two 5-second clips, one voic
 
 | File | What | Naming |
 |---|---|---|
-| Voiceover | The full script read aloud, one file per part (Hook, Part 1 to 4, Story, Outro) | 01_hook.wav, 02_part1.wav … |
+| Voiceover | The full script read aloud, one file per part (Hook, Part 1 to 4, Outro. Ep 1 has no personal story; the reading script is the separate doc 'Ep 1 Recording Script') | 01_hook.wav, 02_part1.wav … |
 | Intro clip | 5 seconds, both of you, landscape, a nod or a wave somewhere real | clip_intro.mp4 |
 | Outro clip | 5 seconds, both of you walking toward camera | clip_outro.mp4 |
 | Story photos | Photos and footage for the personal story, in the order you mention them | story_01.jpg, story_02.mp4 … |
@@ -189,14 +172,14 @@ Your total time for this video is about 90 minutes: two 5-second clips, one voic
 
 **Fact-check before recording**
 
-- [ ] Fred Hoyle quote: confirm wording and source (commonly cited from his 1981 article in *Engineering and Science*).
+- [x] Checked: Fred Hoyle quote, "A commonsense interpretation of the facts suggests that a superintellect has monkeyed with physics", 1981 (also cited from *Engineering and Science*).
 - [ ] "Searched more than any other": based on US Google data reported by RELEVANT (April 2025).
 - [ ] Age of the universe: about 13.8 billion years.
-- [ ] Hoyle and carbon: Hoyle predicted the carbon-12 energy level (the "Hoyle state") in 1953 and it was found experimentally soon after. Confirm the wording.
+- [x] Hoyle and carbon: Checked: Hoyle predicted the level in 1953 at 7.68 MeV; Ward Whaling's team at Caltech found it at 7.65 MeV, within his margin (Physics World, "The secret of life").
 - [ ] 1965 afterglow: the cosmic microwave background, found by Arno Penzias and Robert Wilson.
 - [ ] Fifty archers analogy: adapted from philosopher John Leslie's firing-squad argument. Credit in the description.
 - [ ] C.S. Lewis point: Mere Christianity, Book 1, chapter 1. Confirm the examples (cowardice, betraying friends).
-- [ ] Tacitus: Annals 15.44, written around 116 AD. Check the translation used on the card.
+- [x] Checked: Tacitus, Annals 15.44, written around AD 116; most scholars accept the passage as authentic. Card wording is the public-domain Church and Brodribb translation (1876).
 - [ ] Historians on Jesus: the scholarly consensus that Jesus existed and was crucified under Pilate. Cite one mainstream source (for example Bart Ehrman) in the description.
 - [ ] Scripture is now NIV. Check each verse in the YouVersion app (NIV) before recording: Genesis 1:1, Psalm 19:1, Romans 1:20, Romans 2:15, John 1:1, John 1:14, Hebrews 1:1-2, Jeremiah 29:13. Bible sites are blocked from the agent's network, so the exact wording isn't confirmed yet.
 - [ ] Fred Hoyle "didn't believe in God": his views on God shifted over his life. Consider "who wasn't religious" instead.
