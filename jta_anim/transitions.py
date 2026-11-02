@@ -149,7 +149,7 @@ def _frames(path: Path, n: int, from_end: bool) -> list[np.ndarray]:
     return out
 
 
-PAINT_S, HOLD_S, BRUSH_S = 0.8, 2.2, 0.9   # Matt, 2 Nov 2026: sit on the painted version longer
+PAINT_S, HOLD_S, BRUSH_S = 0.8, 0.9, 0.9   # Matt, 2 Nov 2026: a short beat on the living painting (2.2 s was too long)
 
 
 def _bright_point(img: np.ndarray) -> tuple[float, float]:
