@@ -2,6 +2,7 @@
 
 Mirrors the script doc row by row (ids = part + row). AI prompts are built by
 jta_visuals.build_video_prompt(); write scenes here, never full prompts.
+ANIM and TEXT shots use the JTA short-form motion-graphics design (system prompt 5.5).
 Reused clips were approved in testing on 2 Nov 2026.
 """
 from jta_visuals.prompts import Shot
@@ -16,7 +17,7 @@ SHOTS = [
       scene="A lone man in a plain grey wool robe, standing upright on a rocky cliff edge at night, seen from behind, looking up at a sky dense with stars and the Milky Way.",
       light="Deep blue night, cold moonlight rim light, light haze.", mood="Awe and longing.", hero=True),
     S("H-02", "ANIM", "Not 'which church should I go to.' Not 'how do I pray.'",
-      spec="Search bar typing those two phrases, each deleted. Navy and gold."),
+      spec="Search bar typing those two phrases, each deleted."),
     S("H-03", "ANIM", "Just this: is there a God?",
       spec="Search bar types IS THERE A GOD? and holds. sfx: soft impact."),
     S("H-04", "AI", "If the answer is no, we're an accident, and nothing really means anything.",
@@ -34,7 +35,7 @@ SHOTS = [
     S("H-10", "TEXT", "(pause)", spec="Title card IS THERE A GOD? sfx: whoosh.", background="P1-12"),
 
     # ---------------- Part 1: the dominoes ----------------
-    S("P1-01", "ANIM", "Picture a line of dominoes falling.", spec="Dominoes fall left to right, gold on navy. sfx: clicks."),
+    S("P1-01", "ANIM", "Picture a line of dominoes falling.", spec="Dominoes fall left to right. sfx: clicks."),
     S("P1-02", "ANIM", "Now follow the line backwards.", spec="Camera tracks back along the line, accelerating."),
     S("P1-03", "ANIM", "Did something push the first one?", spec="Line ends at one standing domino, spotlit. Freeze."),
     S("P1-04", "AI", "A tree comes from a seed.",
@@ -52,6 +53,10 @@ SHOTS = [
     S("P1-07", "ANIM", "The universe having a beginning, around 13.8 billion years ago.",
       spec="A point of light in blackness erupts into thousands of scattered galaxies. music: builds.",
       notes="Moved from AI: the AI test looked like a cotton-wool hurricane."),
+    S("P1-07a", "ANIM", "How do we know? Galaxies are all moving away from each other.",
+      spec="Galaxies drift apart; the film runs backwards and they rush into a single point."),
+    S("P1-07b", "ANIM", "In 1965, two scientists picked up a faint glow... the afterglow of that beginning.",
+      spec="A faint even glow fills the whole sky map. Label: THE AFTERGLOW, 1965."),
     S("P1-08", "ANIM", "Space, time, matter and energy, all starting.", spec="Four words orbit the explosion."),
     S("P1-09", "ANIM", "So the universe had a cause.", spec="Three-step logic chain builds line by line."),
     S("P1-10", "ANIM", "It made those things.", spec="Words fade, one glowing point outside the frame."),
@@ -69,6 +74,10 @@ SHOTS = [
     S("P1-13", "ANIM", "'Then who made God?'", spec="Question mark drops onto the first domino. sfx: subtle scratch."),
     S("P1-14", "ANIM", "He didn't begin, so He doesn't need a cause.", spec="Timeline: universe line with a start; God band beyond both ends."),
     S("P1-15", "ANIM", "Blind nature or a mind.", spec="Split: random swirl / glowing hand leaving the first domino."),
+    S("P1-15a", "ANIM", "Tiny particles pop in and out of existence all the time.",
+      spec="Tiny sparks flicker inside an empty box labelled NOTHING."),
+    S("P1-15b", "ANIM", "That's a sea of energy, run by the laws of physics. It's not nothing.",
+      spec="Zoom in: the box is full of shimmering waves labelled ENERGY and LAWS; NOTHING crossed out."),
     S("P1-16", "AI", "'Nothing created everything' takes a lot of faith too.",
       camera="Slow push-in from behind.",
       scene="A man in a grey wool robe standing upright at the edge of a vast dark void, looking out.",
@@ -87,6 +96,14 @@ SHOTS = [
     S("P2-04", "ANIM", "No stars.", spec="Gravity needle nudges; galaxy collapses. sfx: power-down hum."),
     S("P2-05", "ANIM", "No life.", spec="Second needle nudges; atoms fly apart."),
     S("P2-06", "ANIM", "(pause)", spec="Needles snap back; galaxy and atoms return."),
+    S("P2-06a", "AI", "Fred Hoyle was trying to work out how stars make carbon.",
+      camera="Slow push-in.",
+      scene="A blazing star in deep space, glowing gas swirling around it.",
+      light="Intense white-gold core, deep blue space.", mood="Power and wonder.", nature=True),
+    S("P2-06b", "ANIM", "It could only happen if carbon had one very specific energy level.",
+      spec="A carbon atom with a ladder of energy levels; one empty rung glows with a question mark."),
+    S("P2-06c", "ANIM", "They found it almost exactly where he said.",
+      spec="The rung lights up gold, a tick appears; a leaf, a hand and a heart draw out of the carbon."),
     S("P2-07", "AI", "(background for the Hoyle quote)",
       camera="Slow orbit around the figure.",
       scene="An ancient astronomer in a striped wool robe on a flat limestone rooftop at night, beside a large bronze armillary sphere, looking up at the stars.",
@@ -101,6 +118,12 @@ SHOTS = [
       scene="The Milky Way wheeling over a still mountain lake, reflected in the water.",
       light="Clear night, starlight.", mood="Vast, glorious.", nature=True),
     S("P2-10", "TEXT", "The heavens declare the glory of God...", spec="Psalm 19:1 (NIV).", background="P2-09"),
+    S("P2-10a", "ANIM", "Of course the dials are right. If they weren't, we wouldn't be here to notice.",
+      spec="A bronze dial with a small figure beside it, shrugging."),
+    S("P2-10b", "ANIM", "Imagine fifty archers fire at you from close range, and every arrow misses.",
+      spec="A line of fifty archers draws and fires; every arrow flies past a lone figure. Reuse the short-form archer."),
+    S("P2-10c", "ANIM", "You'd still want to know why they all missed.",
+      spec="Arrows stuck in the ground around the untouched figure, who looks back at the archers."),
     S("P2-11", "AI", "Maybe there are billions of universes...",
       camera="Slow drift.",
       scene="Countless glowing translucent bubble-like universes floating in darkness, each a different soft colour.",
@@ -144,6 +167,12 @@ SHOTS = [
       camera="Slow push-in, close-up.",
       scene="A bearded man in a brown-and-grey striped wool robe reacting to betrayal, jaw tight, eyes wet, in a stone courtyard.",
       light="Low warm oil-lamp light, strong shadow.", mood="Hurt.", people=True),
+    S("P3-12a", "AI", "But different cultures have totally different morals.",
+      camera="Slow orbit.",
+      scene="Ancient travellers from different peoples (Galilean, Egyptian, Ethiopian, Persian) sharing bread around a fire in the desert at night, laughing.",
+      light="Warm firelight against a starry sky.", mood="Shared humanity.", people=True),
+    S("P3-12b", "ANIM", "No culture has ever admired running away in battle, or betraying friends.",
+      spec="Two scrolls side by side; most lines differ, the same few lines glow gold on both."),
     S("P3-13", "ANIM", "Creative, moral and personal.", spec="All three frames light up as named. music: resolves."),
 
     # ---------------- Personal story ----------------
@@ -168,6 +197,12 @@ SHOTS = [
       camera="Slow push-in.",
       scene="The dark stone chamber with the vast unlabelled bronze instrument of dials, now empty, the rough cedar plank door left open, daylight spilling in across the floor.",
       light="Daylight shaft and dying oil lamps.", mood="Absence turned to invitation."),
+    S("P4-06a", "AI", "Almost every historian agrees Jesus was a real man from Galilee.",
+      camera="Slow push-in, side view.",
+      scene="A Roman scribe in a plain tunic writing on a wax tablet with a stylus at a stone desk, marks too small to read.",
+      light="Warm oil-lamp light, dark room.", mood="Record, evidence.", people=True),
+    S("P4-06aT", "TEXT", "Tacitus, Annals 15.44.",
+      spec="Christus 'suffered the extreme penalty... at the hands of Pontius Pilatus.' Tacitus, Annals 15.44.", background="P4-06a"),
     S("P4-07", "AI", "The painter came and walked around in His own painting.",
       camera="Slow tracking shot from behind.",
       scene="{JESUS} walks through a crowded first-century market street in Galilee: stone walls, woven awnings, baskets of figs and grain, clay jars; villagers turn to look at him as he passes.",

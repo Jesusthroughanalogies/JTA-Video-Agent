@@ -18,7 +18,8 @@ from conftest import ROOT, Run, kill9
 
 PLAN = json.loads((ROOT / "episodes" / "ep001" / "generation_plan.json").read_text())
 PLAN_COUNT = collections.Counter(s["params"]["prompt"] for s in PLAN["steps"])
-PLAN_CREDITS = sum(s["credits"] for s in PLAN["steps"])  # 354.0
+PLAN_CREDITS = sum(s["credits"] for s in PLAN["steps"])
+PLAN_JOBS = len(PLAN["steps"])  # derived from the plan, so the tests follow the shot list
 
 
 def audit(r: Run, allow_redos: bool = False) -> dict:
@@ -59,7 +60,7 @@ def test_clean_run_matches_plan(runner):
     r = runner.run()
     assert r.returncode == 2, r.stdout  # 2 = stopped cleanly after --until generate
     a = audit(runner)
-    assert a["server_jobs"] == 42 and a["charged"] == PLAN_CREDITS == 354.0
+    assert a["server_jobs"] == PLAN_JOBS and a["charged"] == PLAN_CREDITS
 
 
 def test_kill_mid_generation_then_restart(runner):
@@ -76,7 +77,7 @@ def test_kill_mid_generation_then_restart(runner):
     r = runner.run()
     assert r.returncode == 2, r.stdout
     a = audit(runner)
-    assert a["server_jobs"] == 42
+    assert a["server_jobs"] == PLAN_JOBS
 
     # Second run: nothing that already had a job id was submitted again; it was collected.
     second_run = _events_after_last_start(runner)
@@ -101,7 +102,7 @@ def test_crash_between_submit_and_saving_the_job_id(runner):
     events = _events_after_last_start(runner)
     assert any(e["event"] == "reconciled" and stuck[0] in e["msg"] and "adopted" in e["msg"] for e in events)
     a = audit(runner)
-    assert a["server_jobs"] == 42
+    assert a["server_jobs"] == PLAN_JOBS
 
 
 def test_pause_and_resume(runner):
@@ -111,12 +112,12 @@ def test_pause_and_resume(runner):
     out, _ = p.communicate(timeout=60)
     assert p.returncode == 2
     st = runner.state()
-    assert st["status"] == "paused" and st["summary"]["jobs_done"] < 42
+    assert st["status"] == "paused" and st["summary"]["jobs_done"] < PLAN_JOBS
     assert "paused" in runner.other("status").stdout
 
     r = runner.run()                       # resume: carries on from the saved step
     assert r.returncode == 2
-    assert audit(runner)["server_jobs"] == 42
+    assert audit(runner)["server_jobs"] == PLAN_JOBS
 
 
 def test_wifi_drop_and_return(runner, tmp_path):
@@ -131,7 +132,7 @@ def test_wifi_drop_and_return(runner, tmp_path):
     assert p.returncode == 2
     kinds = [e["event"] for e in runner.events()]
     assert "offline" in kinds and "online" in kinds
-    assert audit(runner)["server_jobs"] == 42
+    assert audit(runner)["server_jobs"] == PLAN_JOBS
 
 
 def test_long_outage_pauses_then_resume(runner, tmp_path):
@@ -145,7 +146,7 @@ def test_long_outage_pauses_then_resume(runner, tmp_path):
     offline.unlink()
     r = runner.run()
     assert r.returncode == 2
-    assert audit(runner)["server_jobs"] == 42
+    assert audit(runner)["server_jobs"] == PLAN_JOBS
 
 
 def test_redos_and_failures_survive_a_kill(runner):
@@ -158,7 +159,7 @@ def test_redos_and_failures_survive_a_kill(runner):
     a = audit(runner, allow_redos=True)
     st = runner.state()
     attempts = sum(1 for j in st["jobs"].values() for a_ in j["attempts"] if a_.get("job_id"))
-    assert a["server_jobs"] == attempts > 42      # redos happened, each one recorded
+    assert a["server_jobs"] == attempts > PLAN_JOBS      # redos happened, each one recorded
     assert any(e["event"] == "qc-reject" for e in runner.events())
 
 
@@ -168,7 +169,7 @@ def test_two_processes_cannot_run_one_episode(runner):
     second = runner.run(timeout=30)
     assert second.returncode == 1 and "already running" in second.stdout
     p.communicate(timeout=120)
-    assert audit(runner)["server_jobs"] == 42
+    assert audit(runner)["server_jobs"] == PLAN_JOBS
 
 
 def _events_after_last_start(r: Run) -> list[dict]:

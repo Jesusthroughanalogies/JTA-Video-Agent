@@ -1,7 +1,7 @@
 {
   "episode": "ep001-does-god-exist",
-  "credits_planned": 354.0,
-  "credits_with_redos": 461,
+  "credits_planned": 380.25,
+  "credits_with_redos": 495,
   "credit_cap": 1200,
   "grade_filter": "eq=contrast=1.08:saturation=0.9:gamma=0.97,colorbalance=rs=0.04:gs=0.01:bs=-0.04:rm=0.02:bm=-0.02:rh=0.03:bh=-0.05,vignette=angle=PI/5,noise=alls=6:allf=t+u",
   "reused": {
@@ -160,6 +160,20 @@
         "duration": 5,
         "sound": "off",
         "prompt": "Slow dolly forward through a doorway. A heavy rough cedar plank door with iron straps swings open onto a dark stone chamber; at the far end a vast ancient bronze instrument fills the wall: dozens of round unlabelled bronze dials, concentric rings, pointer arms and interlocking gears like the Antikythera mechanism. Lit only by clay oil lamps and flaming torches, dust floating in a shaft of daylight from the doorway. 35mm cinematic, shallow depth of field. Mystery and wonder. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-06a-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. A blazing star in deep space, glowing gas swirling around it. Intense white-gold core, deep blue space. 35mm cinematic, shallow depth of field. Power and wonder. No people, no buildings, no boats unless described, no text, no lettering."
       },
       "credits": 8.75
     },
@@ -346,6 +360,20 @@
       "credits": 8.75
     },
     {
+      "key": "P3-12a-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow orbit. Ancient travellers from different peoples (Galilean, Egyptian, Ethiopian, Persian) sharing bread around a fire in the desert at night, laughing. Warm firelight against a starry sky. 35mm cinematic, shallow depth of field. Shared humanity. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
       "key": "P4-02-v1",
       "tool": "generate_video",
       "depends_on": [],
@@ -398,6 +426,20 @@
         "duration": 5,
         "sound": "off",
         "prompt": "Slow push-in. The dark stone chamber with the vast unlabelled bronze instrument of dials, now empty, the rough cedar plank door left open, daylight spilling in across the floor. Daylight shaft and dying oil lamps. 35mm cinematic, shallow depth of field. Absence turned to invitation. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-06a-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in, side view. A Roman scribe in a plain tunic writing on a wax tablet with a stylus at a stone desk, marks too small to read. Warm oil-lamp light, dark room. 35mm cinematic, shallow depth of field. Record, evidence. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
       },
       "credits": 8.75
     },

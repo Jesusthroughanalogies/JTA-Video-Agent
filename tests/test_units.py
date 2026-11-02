@@ -112,7 +112,7 @@ def test_credit_cap_stops_and_asks(episode):
     assert spent <= 40                                   # never went over
     g.ledger.raise_cap(1000, "test")
     g.run()                                              # carries on after approval
-    assert len(hf.server_jobs()) == 42
+    assert len(hf.server_jobs()) == len(json.loads((paths.ep_dir / "generation_plan.json").read_text())["steps"])
 
 
 def test_no_credits_before_checkpoint_c(episode):

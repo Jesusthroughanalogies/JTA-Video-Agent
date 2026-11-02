@@ -21,7 +21,7 @@ Read these files first, every time. They are how you improve from one video to t
 | `knowledge/episodes/` | One file per finished episode: script, shot list, prompts that worked, prompts that failed, costs |
 | `jta_visuals/` (code) | The locked visual rules as code: prompt builder, validator, cost estimator, grade filter. Section 5 explains it. |
 
-If a learning contradicts the style bible, follow the learning (it is newer) and flag the conflict in your checkpoint message so the humans can update the bible. Section 5 of this prompt overrides both.
+If a learning contradicts the style bible, follow the learning (it is newer) and flag the conflict in your checkpoint message so the humans can update the bible. Sections 5 and 6 of this prompt are locked and override both.
 
 ---
 
@@ -56,7 +56,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 ### Phase 4: Shot list and cost (CHECKPOINT C)
 
 1. Write the episode's shot list as code in `episodes/<episode-id>/shots.py`, in the same format as `episodes/ep001/shots.py`. For every shot:
-   - `[AI]`: scene, camera move, light, whether it uses the Jesus character, whether it is a hero shot (2 variants) or standard (1 variant). The prompt itself is built by `jta_visuals.build_prompt()`, never written freehand.
+   - `[AI]`: scene, camera move, light, whether it uses the Jesus character, whether it is a hero shot (2 variants) or standard (1 variant). The prompt itself is built by `jta_visuals.prompts.build_video_prompt()` (and `build_frame_prompt()` for Jesus start frames), never written freehand.
    - `[ANIM]`: an animation spec for the code renderer (elements, motion, timing, palette).
    - `[TEXT]`: exact wording, reference and background.
    - `[STOCK]`: search terms and licence source. Use only when AI or animation cannot do the job, and only if it passes the ancient-only rule.
@@ -79,7 +79,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 ### Phase 6: Assemble (CHECKPOINT D: rough cut)
 
 1. Cut every shot to the voiceover timeline. Add light motion to stills (slow push or pan). Use cuts by default, cross-dissolves only for time or mood shifts.
-2. Apply the JTA grade (Section 5.5) to every AI clip. Never to animations, text cards or the humans' photos and clips.
+2. Apply the JTA grade (Section 5.6) to every AI clip. Never to animations, text cards or the humans' photos and clips.
 3. Mix audio to the levels in the style bible: voice clear and dominant, music under it, sound effects sparing.
 4. Add chapter markers at each part heading.
 5. Render a rough cut (720p is fine) and upload it to `/JTA/Episodes/<episode-id>/review/`. Send the link with a list of anything you are unsure about.
@@ -91,7 +91,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 2. Make 3 thumbnail options following the style bible; recommend one. Thumbnails follow the ancient-only rule too.
 3. Write the title (from the approved options), description (summary, chapters, scripture references, sources, links, and the voice disclosure line from Section 6), tags and a pinned comment that asks one question to drive replies.
 4. Write an `.srt` caption file from the aligned transcript.
-5. Upload to YouTube as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
+5. Build the upload pack in `/JTA/Episodes/<episode-id>/final/` (video, thumbnail, captions, description, chapters). The humans upload it as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
 6. Suggest 3 moments (30 to 60 seconds each) to cut into Shorts.
 7. Tell the humans the draft is ready. They publish.
 
@@ -138,7 +138,7 @@ Galilean villages always have flat-roofed limestone and mud-plaster houses, oliv
 
 Two exceptions:
 - The humans' own `[PHOTO]` and `[CLIP]` material (their real lives, and the strongest signal to YouTube that real people run the channel).
-- `[ANIM]` 2D motion graphics in navy and gold. These are diagrams, not scenes. Keep analogy objects simple. Where an AI scene and an animation show the same analogy, they match: the dials are engraved bronze in both. The dominoes stay as 2D graphics. The hook's search bar animation stays.
+- `[ANIM]` 2D motion graphics in the JTA short-form design (5.5). These are diagrams, not scenes. Keep analogy objects simple. Where an AI scene and an animation show the same analogy, they match: the dials are engraved bronze in both. The dominoes stay as 2D graphics. The hook's search bar animation stays.
 
 Space and nature shots (stars, galaxies, oceans, islands) are timeless and allowed, but big cosmic events are better as `[ANIM]`: the AI test of the universe beginning looked cheap.
 
@@ -162,7 +162,7 @@ Space and nature shots (stars, galaxies, oceans, islands) are timeless and allow
 
 ### 5.4 Prompt formula
 
-Built by `jta_visuals.build_prompt()` in this order: camera move, subject and action, setting and time of day, light, lens ("35mm cinematic, shallow depth of field"), mood, then the fixed ancient-only ending. Keep scene descriptions concrete and physical. Don't ask for film grain or colour grade in the prompt; prompts can't deliver them consistently, so the grade is added in the edit.
+Built by `jta_visuals.prompts.build_video_prompt()` in this order: camera move, subject and action, setting and time of day, light, lens ("35mm cinematic, shallow depth of field"), mood, then the fixed ancient-only ending. Keep scene descriptions concrete and physical. Don't ask for film grain or colour grade in the prompt; prompts can't deliver them consistently, so the grade is added in the edit.
 
 Lessons from testing:
 - Say "standing upright" when a figure should stand, or Kling may sit them down.
@@ -170,7 +170,18 @@ Lessons from testing:
 - Doors are "rough cedar plank doors with iron straps"; plain "wooden door" comes out with 19th-century panels.
 - Name the architecture explicitly ("flat-roofed limestone houses") or villages drift to Spain or Italy.
 
-### 5.5 The JTA grade (in the edit)
+### 5.5 Animation design: the JTA short-form look
+
+All `[ANIM]` and `[TEXT]` shots use the same motion-graphics design as the JTA short-form reels, so the long form and the reels look like one channel. The short-form engine (`engine.js`, the `THEME` object and the motion-graphics scenes from the reels project) is the reference: copy its palette, fonts, easing and components rather than inventing new ones. Adapt the layout from 1080x1920 portrait to 1920x1080 landscape.
+
+- **Type:** IM Fell DW Pica for everything (titles, emphasis words, labels, captions). EB Garamond only for Greek, which Fell can't set.
+- **Palette (paper version, used beside the illustrated cast):** paper background `#fbf3e6` with `#f4e6cc` for panels, ink `#2a1a14`, gold `#c27c1e`, coral `#c84a3a` for warnings and crossed-out words, soft paper grain over the whole frame. Use the dark version (background `#0c0a0f`, cream `#f5e9d6`, gold `#e8c27a`) only where a beat sits between two night-time AI shots.
+- **Motion:** kinetic type. Emphasis words pop in with a slight overshoot, stamps slam down, slabs and labels slide in, ink lines draw themselves. Lines and labels are letterspaced Fell caps with a gold rule and diamonds.
+- **Characters:** reuse the reels' drawn cast (the archer, Jesus, crowd figures) with thick outlines and flat colours. In animation, Jesus wears the same colours as the AI JTA-Jesus character (off-white tunic, dark brown mantle) so the two never clash.
+- **Captions:** narrow centred column, key words in gold with a hand-drawn wavy underline. Captions never overlap an emphasis word on screen, and everything stays inside the frame with safe margins.
+- **Cuts:** straight cuts between AI footage and motion graphics, no transitions, as in the reels.
+
+### 5.6 The JTA grade (in the edit)
 
 Apply this ffmpeg filter to every AI clip, after trimming and before the final render. It's stored as `jta_visuals.rules.GRADE_FILTER`:
 
