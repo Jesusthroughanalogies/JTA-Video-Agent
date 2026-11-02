@@ -11,7 +11,8 @@ EPISODE_ID = "ep001-does-god-exist"
 
 # Ep 1: narration comes from Matt's and Jack's ElevenLabs voice clones (each trained on about
 # an hour of their own reading). There is no personal story in this episode.
-NARRATION = "clones"
+NARRATION = "ai"   # Ep 1 test: one ElevenLabs library voice reads everything (Arthur, raspy cinematic)
+NARRATOR_VOICE_ID = "W6MrCWXQQlYJsASXoxfJ"
 
 S = Shot
 SHOTS = [
@@ -31,8 +32,7 @@ SHOTS = [
     S("H-05", "AI", "And if the answer is yes, that changes everything.",
       reuse="fa0e0ad5-a639-4f8e-be9a-3118411b1a5e", nature=True,
       notes="Ocean sunrise from the first test. Grade lifts it in the edit."),
-    S("H-06", "CLIP", "We're Matt and Jack.", spec="clip_intro.mp4, 5 s, both of you."),
-    S("H-07", "PHOTO", "We're not professors...", spec="Story photos: Sumba, the runs, the baptism."),
+    # H-06 and H-07 (Matt and Jack on camera) are cut from Ep 1: AI narrator test (Matt, 2 Nov 2026).
     S("H-08", "ANIM", "We'll show you the three biggest reasons...", spec="Three blank frames slide in side by side."),
     S("H-09", "ANIM", "Some dominoes. A set of dials. And a painting.",
       spec="Frames fill: a domino, an engraved bronze dial, a painted sunrise."),
@@ -241,7 +241,8 @@ SHOTS = [
     S("P4-16", "ANIM", "Jesus tells you He came looking for you.", spec="The painted figure turns and walks toward the viewer. music: peaks."),
 
     # ---------------- Outro ----------------
-    S("O-01", "CLIP", "If this made you think, subscribe.", spec="clip_outro.mp4, 5 s, then subscribe animation."),
+    S("O-01", "ANIM", "If this made you think, subscribe.",
+      spec="A wax seal stamps SUBSCRIBE onto a papyrus card; the three picture frames sit above it."),
     S("O-02", "ANIM", "Send this to someone who's asked this question.", spec="Paper plane flies from the screen."),
     S("O-03", "AI", "Why is there so much suffering in the world? That's next week.",
       camera="Static wide, time-lapse clouds.",

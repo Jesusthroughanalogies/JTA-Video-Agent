@@ -41,6 +41,7 @@ NIV_LINE = ("Scripture quotations taken from The Holy Bible, New International V
 VOICE_DISCLOSURE = ("Narration uses AI voice clones of Matt and Jack's own voices, made with their consent. "
                     "The personal story is recorded live.")  # Section 6.3, verbatim
 RECORDED_DISCLOSURE = "Narration is recorded by Matt and Jack in their own voices."  # NARRATION = "recorded"
+AI_DISCLOSURE = "Narration is an AI-generated voice made with ElevenLabs."  # NARRATION = "ai"
 STORY_FILES = ("story.wav", "story.mp3", "story.m4a")
 AUDIO_EXTS = (".wav", ".mp3", ".m4a")
 VOICE_PARTS = ["01_hook", "02_part1", "03_part2", "04_part3", "05_part4", "06_outro"]
@@ -51,7 +52,9 @@ def episode_meta(shots_path: Path) -> dict:
 
     NARRATION = "clones" (default): the voiceover is generated from the ElevenLabs clones (Section 6.2).
     NARRATION = "recorded": Matt and Jack record the whole voiceover themselves (one file per part,
-    or one per part per speaker) and the clones are not used. Ep 1 works this way.
+    or one per part per speaker) and the clones are not used.
+    NARRATION = "ai": one ElevenLabs library voice (NARRATOR_VOICE_ID in shots.py) reads every line,
+    whoever the script gives it to. Ep 1 tests this (Matt, 2 Nov 2026).
     The personal story is included only when the shot list has ST- shots.
     """
     import importlib.util
@@ -59,9 +62,12 @@ def episode_meta(shots_path: Path) -> dict:
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)  # type: ignore[union-attr]
     narration = getattr(mod, "NARRATION", "clones")
-    if narration not in ("clones", "recorded"):
-        raise ValueError(f"NARRATION must be 'clones' or 'recorded', not {narration!r}")
-    return {"narration": narration, "story": any(sh.id.startswith("ST-") for sh in mod.SHOTS)}
+    if narration not in ("clones", "recorded", "ai"):
+        raise ValueError(f"NARRATION must be 'clones', 'recorded' or 'ai', not {narration!r}")
+    meta = {"narration": narration, "story": any(sh.id.startswith("ST-") for sh in mod.SHOTS)}
+    if narration == "ai":
+        meta["narrator_voice_id"] = getattr(mod, "NARRATOR_VOICE_ID")
+    return meta
 
 
 def recorded_files(inputs: Path, part: str) -> list[Path]:
@@ -83,6 +89,10 @@ class Pipeline:
         self.meta = episode_meta(paths.shots) if paths.shots.exists() else {"narration": "clones", "story": True}
         if self.meta["narration"] == "recorded":
             self.disclosure = RECORDED_DISCLOSURE
+        elif self.meta["narration"] == "ai":
+            self.disclosure = AI_DISCLOSURE
+            if hasattr(self.voice, "voices"):   # one narrator reads every speaker's lines
+                self.voice.voices = {k: self.meta["narrator_voice_id"] for k in self.voice.voices}
         elif self.meta["story"]:
             self.disclosure = VOICE_DISCLOSURE
         else:  # no live story this episode, so don't claim one (Section 6.3 line, first sentence only)

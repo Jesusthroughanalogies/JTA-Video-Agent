@@ -200,10 +200,11 @@ def test_recorded_episode_needs_part_files_not_story(tmp_path):
     assert _missing_inputs(tmp_path, meta) == []
 
 
-def test_ep001_uses_clones_without_story():
+def test_ep001_uses_ai_narrator_without_story():
     from jta_agent.config import REPO
     from jta_agent.pipeline import episode_meta
-    assert episode_meta(REPO / "episodes" / "ep001" / "shots.py") == {"narration": "clones", "story": False}
+    assert episode_meta(REPO / "episodes" / "ep001" / "shots.py") == {"narration": "ai", "story": False,
+                                                                           "narrator_voice_id": "W6MrCWXQQlYJsASXoxfJ"}
 
 
 def test_ep001_every_ai_shot_has_an_approved_clip():

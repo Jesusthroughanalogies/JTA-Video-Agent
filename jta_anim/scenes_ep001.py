@@ -1352,6 +1352,31 @@ def p416(ctx, t, s):
 
 # ================================================================ OUTRO
 
+@scene("O-01", gold=("subscribe.", "every", "week"))
+def o01(ctx, t, s):
+    P.triptych(ctx, [{"fill": 1.0, "lit": 0.3, "scale": 0.7, "y": 300, "x": 960 + (k - 1) * 300} for k in range(3)])
+    pa = ease_out(ramp(t, 0.2, 0.5))
+    rounded_rect(ctx, 610, 520, 700, 190, 16)
+    outline_fill(ctx, C["papyrus"], a=pa)
+    t_s = s.wt("subscribe", 0.25)
+    k = ramp(t, t_s, 0.25)
+    if k > 0:   # the seal comes down and stamps
+        sc = lerp(1.8, 1.0, ease_out(k))
+        ctx.save()
+        ctx.translate(1180, 615)
+        ctx.scale(sc, sc)
+        ctx.arc(0, 0, 58, 0, 2 * math.pi)
+        outline_fill(ctx, C["terracotta"], a=k)
+        P.ellipse(ctx, 0, 0, 40, 40)
+        rgb(ctx, C["ink"], 0.35 * k)
+        ctx.set_line_width(3)
+        ctx.stroke()
+        text(ctx, "JTA", 0, 12, 30, C["papyrus"], alpha=k)
+        ctx.restore()
+    text(ctx, "SUBSCRIBE", 860, 632, 64, C["ink"], spacing=10, alpha=ramp(t, t_s + 0.15, 0.3), scale=pop(t, t_s + 0.15))
+    text(ctx, "A new picture every week", 860, 685, 30, C["bronze"], italic=True, alpha=ramp(t, s.wt("every", 0.6), 0.4))
+
+
 @scene("O-02", gold=("send", "someone"))
 def o02(ctx, t, s):
     # a carrier pigeon takes a small sealed scroll and flies off with it
