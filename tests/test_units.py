@@ -151,3 +151,17 @@ def test_blocked_tools_for_claude():
     assert not BLOCKED_TOOLS.search("mcp__ElevenLabs__creative_transcribe_audio")
     assert not BLOCKED_TOOLS.search("mcp__google_drive__download_file_content")
     assert ENV_FILE.search('{"file_path": "/repo/.env"}') and ENV_FILE.search("cat .env.local")
+
+
+def test_voice_disclosure_is_identical_everywhere():
+    from jta_agent.pipeline import VOICE_DISCLOSURE
+    prompt = (ROOT / "claude" / "video-agent-system-prompt.md").read_text()
+    compliance = (ROOT / "knowledge" / "compliance.md").read_text()
+    assert VOICE_DISCLOSURE in prompt, "pipeline line differs from Section 6.3"
+    assert VOICE_DISCLOSURE in compliance, "compliance.md line differs from Section 6.3"
+    assert "Generic or stock AI voices are never used" in compliance
+
+
+def test_only_matt_and_jack_voices_exist():
+    from jta_agent.voice import ElevenLabsTTS
+    assert set(ElevenLabsTTS().voices) == {"MATT", "JACK"}   # no other voice can be selected

@@ -8,6 +8,7 @@ Areas: topic, script, hook, AI prompts, models, animation, audio, pacing, thumbn
 
 ---
 
+2026-11-02 · audio · Main narration may use consented ElevenLabs clones of Matt's and Jack's own voices, with the Section 6.3 disclosure line in every description; the personal story is always live; generic or stock AI voices are never used · decision by Matt, compliance.md updated
 2026-11-01 · script · Scripture switched from KJV to NIV for readability at age 14 to 15 · decision by Matt
 2026-11-01 · process · Humans upload to YouTube by hand from the Drive upload pack; checkpoints run in the Claude chat · decision by Matt
 2026-11-01 · tools · Bible sites (biblegateway, biblica, bible.com, biblestudytools) are blocked from the agent's network; ask the humans to allow one, or flag verses for a manual check · ep001 setup

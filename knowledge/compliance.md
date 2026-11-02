@@ -8,7 +8,10 @@ YouTube renamed its "repetitious content" policy to "inauthentic content" in Jul
 
 JTA stays clearly authentic by:
 
-- Real human voiceover by Matt and Jack (never a synthetic narrator for the main narration).
+- Main narration in Matt's and Jack's own voices: either recorded live, or generated with ElevenLabs clones of their own voices, made with their consent (system prompt Section 6).
+- Generic or stock AI voices are never used, for narration or anything else.
+- The personal story is always recorded live, never cloned.
+- Every description carries the voice disclosure line (see AI disclosure below).
 - Original scripts, original analogies and custom animation in every video.
 - Real founders' photos, clips and personal stories in every video.
 - Distinct structure, visuals and thumbnail per video. No templated repeats.
@@ -19,6 +22,7 @@ JTA stays clearly authentic by:
 - Switch on the altered or synthetic content disclosure for every video with photorealistic AI footage.
 - Since May 2026 YouTube auto-applies labels when it detects undisclosed photorealistic AI; non-disclosure can mean removal or suspension from the Partner Program.
 - Disclosure does not reduce ads.
+- Every description includes this line, word for word (Section 6.3): "Narration uses AI voice clones of Matt and Jack's own voices, made with their consent. The personal story is recorded live."
 
 ## Advertiser-friendly content
 
