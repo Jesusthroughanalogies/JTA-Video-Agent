@@ -18,8 +18,9 @@ PLAN = json.load(open("/tmp/cut/v2/plan.json"))
 
 SHORTS = [
     ("01_dominoes", "WHO PUSHED THE", "FIRST DOMINO?", [(38.4, 109.0)]),
-    ("02_dials", "THE UNIVERSE IS SET", "TO A HAIR'S WIDTH", [(169.5, 200.8)]),
-    ("03_the_painter", "THE PAINTER STEPPED", "INTO HIS PAINTING", [(465.4, 471.0), (477.2, 487.1), (505.0, 515.4)]),
+    ("02_dials", "WHO SET", "THE DIALS?", [(169.5, 200.8), (231.75, 239.2)]),
+    ("03_the_painter", "THE PAINTER STEPPED", "INTO HIS PAINTING",
+     [(421.95, 432.8), (441.85, 445.35), (477.2, 487.1), (512.1, 515.4)]),
 ]
 
 
@@ -56,7 +57,7 @@ def words_in(ranges):
         for sl in PLAN["slots"]:
             for w, t in sl["words"]:
                 at = sl["start"] + t
-                if a <= at < b - 0.05:
+                if a <= at < b - 0.3:
                     out.append((w, base + at - a))
         base += b - a
     return out
@@ -94,22 +95,30 @@ def ass(path, words, total):
 if __name__ == "__main__":
     import os
     os.makedirs(OUT, exist_ok=True)
+    only = set(sys.argv[1:])
     for name, l1, l2, ranges in SHORTS:
+        if only and name not in only:
+            continue
         bg = f"{OUT}/{name}_bg.png"
         background(bg, l1, l2)
         total = sum(b - a for a, b in ranges)
         sub = f"{OUT}/{name}.ass"
         ass(sub, words_in(ranges), total)
-        n = len(ranges)
-        fc = []
-        for i, (a, b) in enumerate(ranges):
-            fc.append(f"[0:v]trim={a}:{b},setpts=PTS-STARTPTS,crop=1360:794:280:68,scale=1080:{VH}[v{i}];"
-                      f"[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,afade=t=in:d=0.25,"
-                      f"afade=t=out:st={b - a - 0.3:.3f}:d=0.3[a{i}]")
-        fc.append("".join(f"[v{i}][a{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=1[vv][aa]")
-        fc.append(f"[1:v][vv]overlay=0:{VY}:shortest=1,ass={sub},format=yuv420p[ov]")
-        fc.append(f"[aa]afade=t=out:st={total - 0.8:.3f}:d=0.8[ao]")
-        run("-i", MASTER, "-loop", "1", "-i", bg, "-filter_complex", ";".join(fc), "-map", "[ov]", "-map", "[ao]",
-            "-t", f"{total:.3f}", "-r", "30", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-            "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", f"{OUT}/JTA_Ep1_Short_{name}.mp4")
+        parts = []
+        for i, (a, b) in enumerate(ranges):     # cut each section on its own (fast seek, low memory)
+            pth = f"{OUT}/{name}_part{i}.mp4"
+            run("-ss", f"{a:.3f}", "-i", MASTER, "-t", f"{b - a:.3f}", "-vf",
+                f"crop=1360:794:280:68,scale=1080:{VH},fps=30", "-af",
+                f"afade=t=in:d=0.2,afade=t=out:st={b - a - 0.25:.3f}:d=0.25", "-c:v", "libx264", "-preset", "veryfast",
+                "-crf", "18", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", pth)
+            parts.append(pth)
+        lst = f"{OUT}/{name}_parts.txt"
+        open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
+        joined = f"{OUT}/{name}_joined.mp4"
+        run("-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", joined)
+        run("-i", joined, "-loop", "1", "-i", bg, "-filter_complex",
+            f"[1:v][0:v]overlay=0:{VY}:shortest=1,ass={sub},format=yuv420p[ov];"
+            f"[0:a]afade=t=out:st={total - 0.8:.3f}:d=0.8[ao]",
+            "-map", "[ov]", "-map", "[ao]", "-t", f"{total:.3f}", "-r", "30", "-c:v", "libx264", "-preset", "veryfast",
+            "-crf", "20", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", f"{OUT}/JTA_Ep1_Short_{name}.mp4")
         print(name, round(total, 1), "s", flush=True)
