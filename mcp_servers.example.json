@@ -1,0 +1,4 @@
+{
+  "google_drive": {"type": "http", "url": "https://YOUR-DRIVE-MCP-URL", "headers": {"Authorization": "Bearer YOUR_TOKEN"}},
+  "elevenlabs": {"type": "http", "url": "https://api.elevenlabs.io/v1/mcp", "headers": {"xi-api-key": "YOUR_KEY"}}
+}

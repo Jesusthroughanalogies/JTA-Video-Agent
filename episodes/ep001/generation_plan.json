@@ -1,0 +1,627 @@
+{
+  "episode": "ep001-does-god-exist",
+  "credits_planned": 354.0,
+  "credits_with_redos": 461,
+  "credit_cap": 1200,
+  "grade_filter": "eq=contrast=1.08:saturation=0.9:gamma=0.97,colorbalance=rs=0.04:gs=0.01:bs=-0.04:rm=0.02:bm=-0.02:rh=0.03:bh=-0.05,vignette=angle=PI/5,noise=alls=6:allf=t+u",
+  "reused": {
+    "H-05": "fa0e0ad5-a639-4f8e-be9a-3118411b1a5e",
+    "P4-05": "941bab45-8687-476a-9c0b-cc4f4a9701a9"
+  },
+  "steps": [
+    {
+      "key": "H-01-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. A lone man in a plain grey wool robe, standing upright on a rocky cliff edge at night, seen from behind, looking up at a sky dense with stars and the Milky Way. Deep blue night, cold moonlight rim light, light haze. 35mm cinematic, shallow depth of field. Awe and longing. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "H-01-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. A lone man in a plain grey wool robe, standing upright on a rocky cliff edge at night, seen from behind, looking up at a sky dense with stars and the Milky Way. Deep blue night, cold moonlight rim light, light haze. 35mm cinematic, shallow depth of field. Awe and longing. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "H-04-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide shot, slight slow motion. Crowds of people pouring through a great stone gate of ancient Jerusalem at dusk, blurring past, one man standing completely still in the middle of the flow. Dusk, last orange light on limestone walls, dust in the air. 35mm cinematic, shallow depth of field. Lonely, searching. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-04-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Macro time-lapse, locked off. A seed splitting open in dark rich soil and a green shoot pushing up toward the light. Soft warm side light, dark background. 35mm cinematic, shallow depth of field. Quiet wonder. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-05-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in, extreme close-up. A newborn baby wrapped in swaddling cloth grips its mother's finger, inside a simple stone house. Warm flickering oil-lamp light. 35mm cinematic, shallow depth of field. Tender, intimate. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-06-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow dolly along the colonnade. Ancient Greek philosophers in draped himations debating beneath a marble colonnade. Sunset, long warm shadows across the stone. 35mm cinematic, shallow depth of field. Thoughtful. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-11-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow top-down push-in. An ancient scroll slowly unrolling across a rough cedar table, Hebrew-style marks too small to read. Warm oil-lamp light, deep shadows. 35mm cinematic, shallow depth of field. Reverent. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-12-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Very slow drift forward. Drifting through a vast nebula of deep blue and gold gas clouds with scattered stars. Glowing gold core, deep blue edges. 35mm cinematic, shallow depth of field. Majestic, calm. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P1-16-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in from behind. A man in a grey wool robe standing upright at the edge of a vast dark void, looking out. Faint cold rim light, near darkness. 35mm cinematic, shallow depth of field. Uncertain, small. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-01-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow dolly forward through a doorway. A heavy rough cedar plank door with iron straps swings open onto a dark stone chamber; at the far end a vast ancient bronze instrument fills the wall: dozens of round unlabelled bronze dials, concentric rings, pointer arms and interlocking gears like the Antikythera mechanism. Lit only by clay oil lamps and flaming torches, dust floating in a shaft of daylight from the doorway. 35mm cinematic, shallow depth of field. Mystery and wonder. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-01-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow dolly forward through a doorway. A heavy rough cedar plank door with iron straps swings open onto a dark stone chamber; at the far end a vast ancient bronze instrument fills the wall: dozens of round unlabelled bronze dials, concentric rings, pointer arms and interlocking gears like the Antikythera mechanism. Lit only by clay oil lamps and flaming torches, dust floating in a shaft of daylight from the doorway. 35mm cinematic, shallow depth of field. Mystery and wonder. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-07-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow orbit around the figure. An ancient astronomer in a striped wool robe on a flat limestone rooftop at night, beside a large bronze armillary sphere, looking up at the stars. Starlight and one small oil lamp. 35mm cinematic, shallow depth of field. Searching, wonder. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-08-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Over-the-shoulder, slow push-in. A figure in a grey wool robe, in silhouette, standing upright and looking up at the glowing ancient bronze instrument of dials in the stone chamber. Amber oil-lamp glow on the bronze, figure in shadow. 35mm cinematic, shallow depth of field. Realisation. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-09-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Time-lapse, locked off. The Milky Way wheeling over a still mountain lake, reflected in the water. Clear night, starlight. 35mm cinematic, shallow depth of field. Vast, glorious. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-11-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow drift. Countless glowing translucent bubble-like universes floating in darkness, each a different soft colour. Each bubble glows from within. 35mm cinematic, shallow depth of field. Dreamlike. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P2-14-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow pull back. Pulling back from the ancient bronze instrument of dials in the dark stone chamber, the oil lamps guttering out one by one. Amber glow fading to black. 35mm cinematic, shallow depth of field. Open question. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-01-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow steadicam walk forward. Moving through an abandoned Roman villa of plastered stone rooms; at the end of the hall a huge wall fresco of a sunrise over the sea. Shafts of daylight through open doorways, dust in the air. 35mm cinematic, shallow depth of field. Discovery. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-01-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow steadicam walk forward. Moving through an abandoned Roman villa of plastered stone rooms; at the end of the hall a huge wall fresco of a sunrise over the sea. Shafts of daylight through open doorways, dust in the air. 35mm cinematic, shallow depth of field. Discovery. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-03-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Extreme close-up, slow slide. Brush strokes on an ancient wall fresco, mineral pigment on rough plaster, the edge of a painted sun. Raking warm light across the surface. 35mm cinematic, shallow depth of field. Intimate, crafted. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-04-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in from behind. A person in a plain blue wool robe sitting alone on a beach, hugging their knees, watching the sun rise over the sea. Golden sunrise, long soft shadows. 35mm cinematic, shallow depth of field. Peaceful. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-05-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Sweeping aerial glide. Green volcanic islands rising out of turquoise sea, waves on black-sand beaches. Bright morning sun, clear air. 35mm cinematic, shallow depth of field. Majestic. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-05-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Sweeping aerial glide. Green volcanic islands rising out of turquoise sea, waves on black-sand beaches. Bright morning sun, clear air. 35mm cinematic, shallow depth of field. Majestic. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-08-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow lateral track. A row of faces from many ancient peoples (Galilean, Roman, Egyptian, Ethiopian, Persian) in their own period dress, each looking into camera, still and serious. Soft overcast daylight. 35mm cinematic, shallow depth of field. Serious, shared. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P3-12-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in, close-up. A bearded man in a brown-and-grey striped wool robe reacting to betrayal, jaw tight, eyes wet, in a stone courtyard. Low warm oil-lamp light, strong shadow. 35mm cinematic, shallow depth of field. Hurt. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-02-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, very slow push. A lone man in a grey wool robe standing in a vast Roman villa hall in front of a huge wall fresco of a sunrise over the sea, small against it. Cool daylight from a high doorway. 35mm cinematic, shallow depth of field. Longing. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-02-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, very slow push. A lone man in a grey wool robe standing in a vast Roman villa hall in front of a huge wall fresco of a sunrise over the sea, small against it. Cool daylight from a high doorway. 35mm cinematic, shallow depth of field. Longing. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-04-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow drift. Drifting through warm golden light and slow-moving dust motes in a dark space. Golden beams. 35mm cinematic, shallow depth of field. Holy, calm. No people, no buildings, no boats unless described, no text, no lettering."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-06-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. The dark stone chamber with the vast unlabelled bronze instrument of dials, now empty, the rough cedar plank door left open, daylight spilling in across the floor. Daylight shaft and dying oil lamps. 35mm cinematic, shallow depth of field. Absence turned to invitation. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-07-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow tracking shot from behind. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> walks through a crowded first-century market street in Galilee: stone walls, woven awnings, baskets of figs and grain, clay jars; villagers turn to look at him as he passes. Late afternoon golden light and dust. 35mm cinematic, shallow depth of field. Quiet authority. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers.",
+        "medias": [
+          {
+            "role": "start_image",
+            "value": "f203f993-27dc-41cd-8174-5cdc296fb415"
+          }
+        ]
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-07-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow tracking shot from behind. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> walks through a crowded first-century market street in Galilee: stone walls, woven awnings, baskets of figs and grain, clay jars; villagers turn to look at him as he passes. Late afternoon golden light and dust. 35mm cinematic, shallow depth of field. Quiet authority. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers.",
+        "medias": [
+          {
+            "role": "start_image",
+            "value": "f203f993-27dc-41cd-8174-5cdc296fb415"
+          }
+        ]
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-08-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Locked off, very slow push. A row of small clay oil lamps flickering on a stone ledge in the dark. Flickering flames only. 35mm cinematic, shallow depth of field. Ancient, still. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-09-v1-frame",
+      "tool": "generate_image",
+      "params": {
+        "model": "nano_banana_pro",
+        "aspect_ratio": "16:9",
+        "prompt": "Cinematic film still. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> breaks a round flatbread in his hands and gives it to the outstretched hands of poor villagers; only his hair, mantle, sleeves and hands are visible. Warm golden backlight. 35mm cinematic, shallow depth of field. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 2.0
+    },
+    {
+      "key": "P4-09-v1",
+      "tool": "generate_video",
+      "depends_on": [
+        "P4-09-v1-frame"
+      ],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Close-up from over his shoulder, slow push. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> breaks a round flatbread in his hands and gives it to the outstretched hands of poor villagers; only his hair, mantle, sleeves and hands are visible. Warm golden backlight. 35mm cinematic, shallow depth of field. Generous, gentle. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers.",
+        "medias": [
+          {
+            "role": "start_image",
+            "value": "{{job:P4-09-v1-frame}}"
+          }
+        ]
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-09-v2-frame",
+      "tool": "generate_image",
+      "params": {
+        "model": "nano_banana_pro",
+        "aspect_ratio": "16:9",
+        "prompt": "Cinematic film still. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> breaks a round flatbread in his hands and gives it to the outstretched hands of poor villagers; only his hair, mantle, sleeves and hands are visible. Warm golden backlight. 35mm cinematic, shallow depth of field. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 2.0
+    },
+    {
+      "key": "P4-09-v2",
+      "tool": "generate_video",
+      "depends_on": [
+        "P4-09-v2-frame"
+      ],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Close-up from over his shoulder, slow push. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> breaks a round flatbread in his hands and gives it to the outstretched hands of poor villagers; only his hair, mantle, sleeves and hands are visible. Warm golden backlight. 35mm cinematic, shallow depth of field. Generous, gentle. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers.",
+        "medias": [
+          {
+            "role": "start_image",
+            "value": "{{job:P4-09-v2-frame}}"
+          }
+        ]
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-10-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Over-the-shoulder close shot, very slow push. <<<163a3147-288b-48fc-b021-30f6cc9b7d61>>> rests his right hand gently on the shoulder of a ragged kneeling man outside a stone village wall; only his hair, mantle, sleeve and hand are visible. Soft golden backlight. 35mm cinematic, shallow depth of field. Compassion. Exactly the same clothes and hair as the reference, hood down. Seen from behind; his face is never visible and he never turns toward camera. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers.",
+        "medias": [
+          {
+            "role": "start_image",
+            "value": "8e61a815-1615-4109-b0e5-02a792d01365"
+          }
+        ]
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-11-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, clouds moving. Silhouette of three wooden crosses on a distant bare hill against a dark storm sky, small in frame, non-graphic. Storm light, a thin break of light in the clouds. 35mm cinematic, shallow depth of field. Grief and gravity. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-11-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, clouds moving. Silhouette of three wooden crosses on a distant bare hill against a dark storm sky, small in frame, non-graphic. Storm light, a thin break of light in the clouds. 35mm cinematic, shallow depth of field. Grief and gravity. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-12-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. An unrolled scroll resting on a rough cedar table beside a lattice window opening and a small clay oil lamp, marks on the scroll too small to read. Soft morning light through the lattice. 35mm cinematic, shallow depth of field. Invitation. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "P4-13-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Slow push-in. A young man in a grey wool robe sitting on a woven mat in a small stone room at night, head bowed, hands clasped. One small oil lamp, warm pool of light in darkness. 35mm cinematic, shallow depth of field. Honest, searching. Everyone else wears plain grey, blue, striped or patterned wool robes, never an off-white tunic with a brown mantle. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "O-03-v1",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, time-lapse clouds. A storm rolling over a Galilean fishing village of flat-roofed stone houses with wooden boats pulled up on the shore, then light breaking through the clouds. Dark storm turning to breaking golden light. 35mm cinematic, shallow depth of field. Hope after darkness. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    },
+    {
+      "key": "O-03-v2",
+      "tool": "generate_video",
+      "depends_on": [],
+      "params": {
+        "model": "kling3_0",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "sound": "off",
+        "prompt": "Static wide, time-lapse clouds. A storm rolling over a Galilean fishing village of flat-roofed stone houses with wooden boats pulled up on the shore, then light breaking through the clouds. Dark storm turning to breaking golden light. 35mm cinematic, shallow depth of field. Hope after darkness. Only first-century materials: stone, mud plaster, timber, wool, linen, leather, clay, bronze, iron. No modern objects: no glass windows, no electric lights, no wires, no poles, no antennas, no vehicles, no plastic, no modern clothing, no tiled roofs, no towers, no chimneys, no text, no lettering, no numbers."
+      },
+      "credits": 8.75
+    }
+  ]
+}

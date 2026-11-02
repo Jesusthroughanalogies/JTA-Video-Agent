@@ -1,0 +1,25 @@
+[project]
+name = "jta-video-agent"
+version = "0.1.0"
+description = "Jesus Through Analogies long-form video agent (Claude Agent SDK)"
+requires-python = ">=3.11"
+dependencies = [
+  "claude-agent-sdk>=0.2.176",
+  "mcp>=2.3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+jta = "jta_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["jta_agent", "jta_visuals"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
