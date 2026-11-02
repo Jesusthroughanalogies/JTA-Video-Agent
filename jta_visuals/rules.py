@@ -9,7 +9,8 @@ JESUS_MASTER_JOB = "10260372-5958-42e8-900d-f51448c2d4f5"
 JESUS_TOKEN = f"<<<{JESUS_ELEMENT_ID}>>>"
 JESUS_RULES = (
     "Exactly the same clothes and hair as the reference, hood down. "
-    "Seen from behind; his face is never visible and he never turns toward camera."
+    "Seen from behind, his back to the camera; his face is never visible and he never turns toward camera. "
+    "If he faces other people in frame, the brown mantle is pulled up over his head as a hood."
 )
 
 # --- Models and costs (measured 2 Nov 2026) ---------------------------------

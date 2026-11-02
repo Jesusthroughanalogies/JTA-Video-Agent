@@ -216,7 +216,7 @@ SHOTS = [
     S("P4-08T", "TEXT", "Hebrews 1:1-2.", spec="Hebrews 1:1-2 (NIV).", background="P4-08"),
     S("P4-09", "AI", "How He treated the poor.",
       camera="Close-up from over his shoulder, slow push.",
-      scene="{JESUS} breaks a round flatbread in his hands and gives it to the outstretched hands of poor villagers; only his hair, mantle, sleeves and hands are visible.",
+      scene="{JESUS}, seen from directly behind with the brown wool mantle pulled up over his head as a hood, breaks a round flatbread and places the pieces in the outstretched hands of poor villagers who face the camera.",
       light="Warm golden backlight.", mood="Generous, gentle.", jesus=True, people=True, hero=True,
       notes="Check hands: five fingers each, no merging."),
     S("P4-10", "AI", "How He touched people nobody would touch.",
@@ -283,7 +283,7 @@ APPROVED = {
     "P4-06a": "e90fe73a-fb37-4e5f-8e85-745796988abb",  # redo: first take had a candle
     "P4-07": "cbc91c7b-4556-4b45-b215-8c5bdfcd4f6a",   # alt f08f931b
     "P4-08": "ff01e8f4-5b9c-4628-aee1-d69e73b5d32e",
-    "P4-09": "7b918860-b835-4561-9b23-6502417b76de",   # alt 541e2fa6
+    "P4-09": "5ab69173-dcda-43a9-bd1c-a16a4aa58ea7",   # redo: hood up, from behind (Matt: face was hidden only by hair)
     "P4-10": "1e15c5a7-7112-4e99-be77-2652528562b6",
     "P4-11": "91600f8a-c0e6-4916-b674-9e2ac5a5c4ef",   # v2: crosses visible
     "P4-12": "0def719b-bb6b-4b68-9313-bbfdb7882b38",

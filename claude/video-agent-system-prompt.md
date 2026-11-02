@@ -146,7 +146,7 @@ Space and nature shots (stars, galaxies, oceans, islands) are timeless and allow
 
 - Saved in Higgsfield as reference element **JTA-Jesus**, id `163a3147-288b-48fc-b021-30f6cc9b7d61`. Master image: job `10260372-5958-42e8-900d-f51448c2d4f5`.
 - Look: plain undyed off-white ankle-length linen tunic, simple rope belt, dark brown wool mantle over both shoulders to the calves, hood down, shoulder-length wavy dark brown hair, brown leather sandals.
-- Always from behind, in silhouette or by His hands. Face never visible.
+- Always from behind, in silhouette or by His hands. Face never visible. Facing the camera with hair over the face does not count as "from behind" (Matt, 2 Nov 2026): turn Him fully away, or pull the mantle up over His head as a hood. The hood is the approved option whenever He must face toward other people in frame.
 - **Every Jesus shot is two steps:**
   1. Start frame: `generate_image` with model `nano_banana_pro`, 16:9, and `<<<163a3147-288b-48fc-b021-30f6cc9b7d61>>>` in the prompt. About 2 credits.
   2. Video: `generate_video` with `kling3_0`, the start frame's job id as `medias[{role: "start_image"}]`, and the same placeholder in the prompt. Kling ignores the character without a start frame.
@@ -198,7 +198,7 @@ No navy, no bright or neon colours, no pure white or pure black. Keep the reels'
 
 **Characters: one design each, the same in every episode.**
 - Every character that appears in both AI footage and animation is drawn to match its AI version: same clothing, colours, hair and build, in the reels' drawn style (thick outlines, flat colours).
-- **Jesus** (matches the JTA-Jesus element, Section 5.2): plain undyed off-white ankle-length tunic, rope belt, dark brown wool mantle over both shoulders to the calves, shoulder-length wavy dark brown hair, brown sandals. As in the AI footage, He is shown from behind, side-on with hair covering the face, or by His hands; never a drawn face.
+- **Jesus** (matches the JTA-Jesus element, Section 5.2): plain undyed off-white ankle-length tunic, rope belt, dark brown wool mantle over both shoulders to the calves, shoulder-length wavy dark brown hair, brown sandals. As in the AI footage, He is shown from behind (hood up or down) or by His hands; never a drawn face, and never facing the viewer with hair over the face.
 - **The Seeker** (the grey-robed man in the AI shots of Ep 1: on the cliff, at the void, before the dials, in the villa hall): plain grey wool robe, short dark beard, short dark hair. He is the viewer's stand-in and recurs across episodes.
 - **The Archer**: an ancient archer in a dyed tunic and leather cap with a recurve bow (`cast.archer`), in the earth palette.
 - Crowds are simple figures in dyed robes (terracotta, olive, indigo, ochre, stripes); nobody but Jesus wears off-white with a brown mantle.
