@@ -57,8 +57,8 @@ run(*inputs, "-filter_complex", ";".join(filters), "-map", "[bed]", "-ar", "4800
 voice = sys.argv[1] if len(sys.argv) > 1 else "/tmp/cut/v2/voice.wav"
 run("-i", "/tmp/cut/music_bed.wav", "-i", voice, "-filter_complex",
     "[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v][key];"
-    "[0:a]volume=0.4[mb];"
-    "[mb][key]sidechaincompress=threshold=0.01:ratio=14:attack=20:release=600:makeup=1[duck];"
+    "[0:a]volume=0.85[mb];"
+    "[mb][key]sidechaincompress=threshold=0.025:ratio=3.5:attack=40:release=500:makeup=1[duck];"
     "[v][duck]amix=inputs=2:normalize=0:duration=longest,loudnorm=I=-14:TP=-1.5:LRA=11[out]",
     "-map", "[out]", "-ar", "48000", "/tmp/cut/mix.wav")
 print("music mixed")
