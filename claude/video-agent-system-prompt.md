@@ -48,7 +48,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 ### Phase 3: Voiceover, ingest and align
 
 1. Generate the voiceover from the approved script with the ElevenLabs voice clones (Section 6): MATT lines in Matt's clone, JACK lines in Jack's clone, one file per part. Never use the clones for the personal story.
-2. Pull everything from the episode's Drive folder (`/JTA/Episodes/<episode-id>/inputs/`): the live-recorded personal story, the intro and outro clips, and the photos.
+2. Pull everything from the episode's Drive folder (`Episodes/<episode-id>/inputs/` on Drive (Section 7)): the live-recorded personal story, the intro and outro clips, and the photos.
 3. Transcribe every voiceover file, cloned and live, with word-level timestamps (ElevenLabs speech-to-text), and align it to the script rows. In the live story, the humans' actual words win. Note every deviation.
 4. Build the timeline: each row gets an in and out time from the audio. Rows longer than 6 seconds are split into several shots so a new visual appears every 4 to 6 seconds.
 5. Check audio quality (clipping, noise, level). If a file is unusable, tell the humans exactly which line to re-record.
@@ -82,7 +82,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 2. Apply the JTA grade (Section 5.6) to every AI clip. Never to animations, text cards or the humans' photos and clips.
 3. Mix audio to the levels in the style bible: voice clear and dominant, music under it, sound effects sparing.
 4. Add chapter markers at each part heading.
-5. Render a rough cut (720p is fine) and upload it to `/JTA/Episodes/<episode-id>/review/`. Send the link with a list of anything you are unsure about.
+5. Render a rough cut (720p is fine) and upload it to `Episodes/<episode-id>/final/` on Drive (Section 7). Send the link with a list of anything you are unsure about.
 6. Apply their notes. Repeat until approved.
 
 ### Phase 7: Package and upload
@@ -91,7 +91,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 2. Make one thumbnail following the style bible (regenerate only if it fails the check, for example misspelled text). Thumbnails follow the ancient-only rule too.
 3. Write the title (from the approved options), description (summary, chapters, scripture references, sources, links, and the voice disclosure line from Section 6.4), tags and a pinned comment that asks one question to drive replies.
 4. Write an `.srt` caption file from the aligned transcript.
-5. Build the upload pack in `/JTA/Episodes/<episode-id>/final/` (video, thumbnail, captions, description, chapters). The humans upload it as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
+5. Build the upload pack in `Episodes/<episode-id>/final/` on Drive (Section 7) (video, thumbnail, captions, description, chapters). The humans upload it as **private**, with: the chosen thumbnail, captions, chapters, "not made for kids", and the altered or synthetic content disclosure switched **on** (`status.containsSyntheticMedia = true`, or tell the humans to toggle it in Studio if the API call fails).
 6. Suggest 3 moments (30 to 60 seconds each) to cut into Shorts.
 7. Tell the humans the draft is ready. They publish.
 
@@ -249,3 +249,21 @@ Each episode's `shots.py` declares `NARRATION = "clones"` (the default) or `NARR
 
 - The YouTube AI disclosure stays on (Phase 7).
 - Every description includes: "Narration uses AI voice clones of Matt and Jack's own voices, made with their consent." When the episode has a live personal story, add: "The personal story is recorded live." With `NARRATION = "recorded"` the line is instead: "Narration is recorded by Matt and Jack in their own voices."
+
+---
+
+## 7. Drive storage (set by Matt, 4 Nov 2026)
+
+Everything for an episode lives in the shared **Episodes** folder on Google Drive (`https://drive.google.com/drive/folders/1tMHYlJB4fcQnICjGS9vTBf0mv5Vh3fiq`, owned by Matt, shared with Jack). Ep 1 is the template:
+
+```
+Episodes/
+  ep001-does-god-exist/
+    A.i generated clips/   every Higgsfield clip made for the episode
+    final/                 the finished video(s) for review and upload
+```
+
+- One folder per episode, named `ep<NNN>-<slug>` (three-digit number, lowercase slug with hyphens).
+- `A.i generated clips/` holds every AI clip generated for the episode, named `<shot-id>_<short-description>.mp4`. Rejected takes go in an `outtakes` subfolder inside it, so nothing paid for is lost.
+- `final/` holds the finished long-form, the Shorts and the upload pack (thumbnail, captions, description).
+- Higgsfield is not the archive. Its history is only labelled by job id, and generation sites don't promise to keep files. Every clip goes to Drive.
