@@ -254,16 +254,21 @@ Each episode's `shots.py` declares `NARRATION = "clones"` (the default) or `NARR
 
 ## 7. Drive storage (set by Matt, 4 Nov 2026)
 
-Everything for an episode lives in the shared **Episodes** folder on Google Drive (`https://drive.google.com/drive/folders/1tMHYlJB4fcQnICjGS9vTBf0mv5Vh3fiq`, owned by Matt, shared with Jack). Ep 1 is the template:
+Everything lives in the **JTA** folder on Google Drive (owned by Matt, shared with Jack). Ep 1 is the template; copy its layout exactly.
 
 ```
-Episodes/
-  ep001-does-god-exist/
-    A.i generated clips/   every Higgsfield clip made for the episode
-    final/                 the finished video(s) for review and upload
+JTA/
+  Episodes/                     https://drive.google.com/drive/folders/1tMHYlJB4fcQnICjGS9vTBf0mv5Vh3fiq
+    ep001-does-god-exist/
+      A.i generated clips/      JTA_Ep1_Higgsfield_approved.zip, JTA_Ep1_Higgsfield_outtakes.zip
+      final/                    the finished long-form video
+  Shorts/                       https://drive.google.com/drive/folders/1SyST9XL__vmlxkgVlLFUGO70ssVmaMII
+  Assets/
+  Knowledge/
 ```
 
-- One folder per episode, named `ep<NNN>-<slug>` (three-digit number, lowercase slug with hyphens).
-- `A.i generated clips/` holds every AI clip generated for the episode, named `<shot-id>_<short-description>.mp4`. Rejected takes go in an `outtakes` subfolder inside it, so nothing paid for is lost.
-- `final/` holds the finished long-form, the Shorts and the upload pack (thumbnail, captions, description).
+- One folder per episode in `Episodes/`, named `ep<NNN>-<slug>` (three-digit number, lowercase slug with hyphens), with two subfolders: `A.i generated clips` and `final`.
+- `A.i generated clips/` holds two zips: `JTA_Ep<N>_Higgsfield_approved.zip` (every clip used in the episode, each named `<shot-id>_<short-description>.mp4`) and `JTA_Ep<N>_Higgsfield_outtakes.zip` (every rejected take, so nothing paid for is lost).
+- `final/` holds the finished long-form video.
+- Shorts do **not** go in the episode folder. Every finished Short goes straight into `JTA/Shorts/`, named `JTA_Ep<N>_Short_<NN>_<slug>.mp4`, as soon as it is approved.
 - Higgsfield is not the archive. Its history is only labelled by job id, and generation sites don't promise to keep files. Every clip goes to Drive.
