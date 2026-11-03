@@ -81,10 +81,10 @@ if __name__ == "__main__":
     if os.path.exists(f"{OUT}/vo.mp3") and os.path.getsize(f"{OUT}/vo.mp3") > 1000:
         # Ananda Yoga, timed so its lift lands on "Unless the painter steps into the painting" (23.1 s)
         run("-i", f"{OUT}/vo.mp3", "-i", "/tmp/music/Ananda Yoga.mp3", "-filter_complex",
-            "[0:a]aformat=sample_rates=48000:channel_layouts=stereo,apad=whole_dur=47.4,asplit=2[v][key];"
+            "[0:a]aformat=sample_rates=48000:channel_layouts=stereo,loudnorm=I=-16:TP=-1.5:LRA=11,apad=whole_dur=47.4,asplit=2[v][key];"
             "[1:a]atrim=start=31.9:duration=47.4,asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
-            "afade=t=in:d=1.5,afade=t=out:st=45.6:d=1.8,volume=0.42[m];"
-            "[m][key]sidechaincompress=threshold=0.025:ratio=3.5:attack=40:release=500[duck];"
+            "afade=t=in:d=1.5,afade=t=out:st=45.6:d=1.8,loudnorm=I=-23:TP=-3:LRA=9,volume=0.72[m];"
+            "[m][key]sidechaincompress=threshold=0.025:ratio=3.5:attack=40:release=500:makeup=1[duck];"
             "[v][duck]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[a]",
             "-map", "[a]", "-ar", "48000", f"{OUT}/mix.wav")
         run("-i", f"{OUT}/picture.mp4", "-i", f"{OUT}/mix.wav", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
