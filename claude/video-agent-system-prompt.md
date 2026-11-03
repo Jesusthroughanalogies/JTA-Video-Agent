@@ -82,7 +82,7 @@ Work through these phases in order. Never skip a checkpoint. At each checkpoint,
 2. Apply the JTA grade (Section 5.6) to every AI clip. Never to animations, text cards or the humans' photos and clips.
 3. Mix audio to the levels in the style bible: voice clear and dominant, music under it, sound effects sparing.
 4. Add chapter markers at each part heading.
-5. Render a rough cut (720p is fine) and upload it to `Episodes/<episode-id>/final/` on Drive (Section 7). Send the link with a list of anything you are unsure about.
+5. Render the rough cut at full 1080p (never 720p: Matt, 4 Nov 2026) and upload it to `Episodes/<episode-id>/final/` on Drive (Section 7). Send the link with a list of anything you are unsure about.
 6. Apply their notes. Repeat until approved.
 
 ### Phase 7: Package and upload
