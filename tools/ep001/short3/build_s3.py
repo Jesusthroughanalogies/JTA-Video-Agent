@@ -83,8 +83,8 @@ if __name__ == "__main__":
         run("-i", f"{OUT}/vo.mp3", "-i", "/tmp/music/Ananda Yoga.mp3", "-filter_complex",
             "[0:a]aformat=sample_rates=48000:channel_layouts=stereo,apad=whole_dur=47.4,asplit=2[v][key];"
             "[1:a]atrim=start=31.9:duration=47.4,asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
-            "afade=t=in:d=1.5,afade=t=out:st=45.6:d=1.8,volume=0.5[m];"
-            "[m][key]sidechaincompress=threshold=0.015:ratio=9:attack=30:release=450[duck];"
+            "afade=t=in:d=1.5,afade=t=out:st=45.6:d=1.8,volume=0.2[m];"
+            "[m][key]sidechaincompress=threshold=0.01:ratio=14:attack=20:release=600[duck];"
             "[v][duck]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[a]",
             "-map", "[a]", "-ar", "48000", f"{OUT}/mix.wav")
         run("-i", f"{OUT}/picture.mp4", "-i", f"{OUT}/mix.wav", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
