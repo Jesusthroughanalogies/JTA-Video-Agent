@@ -1,15 +1,16 @@
 # Ep 1 upload pack
 
-## Title (Test & Compare)
+## Title options (Test & Compare runs 3)
 1. Is There a God? 3 Pictures That Explain It
-2. Does God Exist? 3 Pictures That Explain It
-3. Is God Real? The 3 Best Clues, Explained Simply
+2. The Universe Had a Beginning. So Who Started It?
+3. Is God Real? The 3 Clues Most People Never Think About
+4. If God Isn't Real, How Do You Explain This?
 
 ## Thumbnail
 Chosen by Matt (5 Nov): "3 CLUES GOD IS REAL", Jesus from behind in the market, series style (tools/ep001/thumbs_v2.py)
 
 ## Description
-Is there a God? It's the most searched question about faith, and the biggest question there is.
+Is there a God? It's the most searched question about faith, and the biggest question there is. If the answer is no, we're an accident. If it's yes, that changes everything.
 
 We're not going to tell you what to think. We'll show you the three biggest reasons people believe in God, with three simple pictures: some dominoes, a set of dials and a painting. Plus the best argument against each one. Then you decide.
 
@@ -34,6 +35,8 @@ The fifty archers: adapted from philosopher John Leslie's firing-squad argument,
 C.S. Lewis, Mere Christianity, Book 1, chapter 1
 Tacitus, Annals 15.44 (around AD 116)
 On Jesus as a historical figure: Bart D. Ehrman, Did Jesus Exist? (2012)
+
+New here? Watch our first video: I Turned the Whole Bible Into a Video Game (It Finally Makes Sense)
 
 Subscribe: every week we take one of the biggest questions about God and break it down into pictures anyone can understand. Next week: If God is real, why is there so much suffering?
 
