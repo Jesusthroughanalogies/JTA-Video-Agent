@@ -5,9 +5,8 @@
 2. Does God Exist? 3 Pictures That Explain It
 3. Is God Real? The 3 Best Clues, Explained Simply
 
-## Thumbnails (Test & Compare)
-A. Is there a God? (the bronze dials chamber)
-B. Who made all this? (the man on the cliff under the stars)
+## Thumbnail
+Chosen by Matt (5 Nov): "3 CLUES GOD IS REAL", Jesus from behind in the market, series style (tools/ep001/thumbs_v2.py)
 
 ## Description
 Is there a God? It's the most searched question about faith, and the biggest question there is.

@@ -22,9 +22,9 @@ title(im, ["WHO", "MADE", "ALL THIS?"], 40, 110, 112)
 im.alpha_composite(strip(x0=820)); mark(im); finish(im, "2_who_made_all_this.jpg")
 
 # 3. Jesus in the market
-im = photo("/tmp/ep1thumb/jesus.png", bright=1.15, shade=(0.0, 0.45)).convert("RGBA")
-title(im, ["3 CLUES", "GOD IS", "REAL"], 40, 90, 118)
-im.alpha_composite(strip(x0=820)); mark(im); finish(im, "3_three_clues.jpg")
+im = photo("/tmp/ep1thumb/jesus.png", bright=1.15, shade=(0.02, 0.45)).convert("RGBA")
+title(im, ["3 CLUES", "GOD IS", "REAL"], 110, 95, 118)
+im.alpha_composite(strip(x0=90)); mark(im, 110, 24); finish(im, "3_three_clues.jpg")
 
 # 4. Fully illustrated: the three pictures in the temple frame
 surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 1920, 1080)
