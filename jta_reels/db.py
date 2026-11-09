@@ -1,7 +1,8 @@
 """Postgres (Supabase) access. Every job reads and writes through here.
 
-Use Supabase's direct connection string (port 5432), not the transaction pooler (6543):
-the publisher holds a session advisory lock so two runs can never post at once.
+Use Supabase's "Session pooler" string (port 5432, works over IPv4) or the direct one (IPv6 only).
+Never the transaction pooler (port 6543): the publisher holds a session advisory lock so two
+runs can never post at once, and that lock needs a session.
 """
 from __future__ import annotations
 

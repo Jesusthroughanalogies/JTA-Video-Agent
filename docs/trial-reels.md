@@ -65,7 +65,7 @@ The crontab is in `deploy/trial-reels.crontab`. It can run in any time zone: the
 
 **2. Cloudflare R2**: create a bucket (e.g. `jta-reels`) and an API token with Object Read & Write on that bucket only.
 
-**3. Supabase**: create a project and copy the **direct** connection string (port 5432).
+**3. Supabase**: create a project, click Connect and copy the **Session pooler** string (port 5432). Not the transaction pooler (6543); the direct string only works over IPv6.
 
 **4. Server**: put the keys in `.env` (template: `.env.example`, never committed), then:
 
