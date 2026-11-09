@@ -15,6 +15,7 @@ again and it carries on from the last saved step without generating anything twi
 | `episodes/ep001/` | `shots.py` (shot list), `generation_plan.json` (planner output), `script.md` (export of the script doc, rev 57). |
 | `jta_agent/` | The agent: pipeline, generation executor, ledger, state, voice, Claude steps, CLI. |
 | `tests/` | Rules tests, unit tests, and the kill/restart tests. |
+| `jta_reels/` | The Trial Reel Agent: 4 Instagram trial reels a day, insights, learning loop. Runbook: `docs/trial-reels.md`. Command: `jta-reels`. |
 
 ## Setup (on the machine that will run it)
 

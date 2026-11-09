@@ -1,0 +1,5 @@
+# Trial Reel Agent. Any time zone works: the code decides when a US Eastern slot is due.
+# Install on the server with: crontab deploy/trial-reels.crontab  (edit APP first)
+APP=/opt/jta-video-agent
+*/10 * * * *  cd $APP && .venv/bin/jta-reels publish  >> $APP/logs/publisher.log 2>&1
+15 */6 * * *  cd $APP && .venv/bin/jta-reels insights >> $APP/logs/insights.log 2>&1

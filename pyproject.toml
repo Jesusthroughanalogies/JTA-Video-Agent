@@ -8,6 +8,8 @@ dependencies = [
   "mcp>=2.3.0",
   "pycairo>=1.25",
   "numpy>=1.26",
+  "psycopg[binary]>=3.2",   # jta_reels: Supabase Postgres
+  "tzdata",                 # jta_reels: US Eastern slots on any server
 ]
 
 [project.optional-dependencies]
@@ -15,13 +17,17 @@ dev = ["pytest>=8"]
 
 [project.scripts]
 jta = "jta_agent.cli:main"
+jta-reels = "jta_reels.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["jta_agent", "jta_visuals", "jta_anim"]
+packages = ["jta_agent", "jta_visuals", "jta_anim", "jta_reels"]
+
+[tool.setuptools.package-data]
+jta_reels = ["sql/*.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

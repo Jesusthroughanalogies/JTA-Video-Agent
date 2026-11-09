@@ -20,3 +20,6 @@ episodes/*/control.json
 episodes/*/.lock
 episodes/*/media/
 episodes/*/work/
+
+# trial reels: Week 1 probe snapshots stay local
+reels_probe/
