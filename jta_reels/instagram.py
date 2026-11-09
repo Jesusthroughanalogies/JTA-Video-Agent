@@ -50,7 +50,7 @@ class GraphError(Exception):
 
 
 class Transport(Protocol):
-    def request(self, method: str, url: str, params: dict) -> tuple[int, dict]: ...
+    def request(self, method: str, url: str, params: dict, headers: dict | None = None) -> tuple[int, dict]: ...
 
 
 class UrllibTransport:
@@ -59,13 +59,14 @@ class UrllibTransport:
     def __init__(self, timeout: float = 60.0):
         self.timeout = timeout
 
-    def request(self, method: str, url: str, params: dict) -> tuple[int, dict]:
+    def request(self, method: str, url: str, params: dict, headers: dict | None = None) -> tuple[int, dict]:
         data = urllib.parse.urlencode(params).encode()
+        h = dict(headers or {})
         if method == "GET":
-            req = urllib.request.Request(f"{url}?{data.decode()}", method="GET")
+            req = urllib.request.Request(f"{url}?{data.decode()}", method="GET", headers=h)
         else:
-            req = urllib.request.Request(url, data=data, method=method,
-                                         headers={"Content-Type": "application/x-www-form-urlencoded"})
+            h["Content-Type"] = "application/x-www-form-urlencoded"
+            req = urllib.request.Request(url, data=data, method=method, headers=h)
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as r:
                 return r.status, json.loads(r.read() or b"{}")
@@ -102,11 +103,12 @@ class Instagram:
     # ---- plumbing ---------------------------------------------------------
     def _call(self, method: str, path: str, params: dict | None = None, retries: int = 3) -> dict:
         p = {k: v for k, v in (params or {}).items() if v is not None}
-        p["access_token"] = self.token
+        # The token goes in a header, never the URL, so it can't leak into logs or proxies' URL records.
+        headers = {"Authorization": f"Bearer {self.token}"}
         attempts = retries + 1 if method == "GET" else 1
         for i in range(attempts):
             try:
-                status, body = self.t.request(method, f"{self.base}/{path.lstrip('/')}", p)
+                status, body = self.t.request(method, f"{self.base}/{path.lstrip('/')}", p, headers)
             except GraphError as e:
                 if i + 1 < attempts:
                     self.sleep(2 ** i)

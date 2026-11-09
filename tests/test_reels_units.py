@@ -68,7 +68,8 @@ def test_trial_reel_container_sends_trial_params_and_no_share_to_feed():
     assert (method, path, cid) == ("POST", "17841400000000000/media", "c1")
     assert params["media_type"] == "REELS"
     assert json.loads(params["trial_params"]) == {"graduation_strategy": "MANUAL"}
-    assert "share_to_feed" not in params and "access_token" in params
+    assert "share_to_feed" not in params and "access_token" not in params
+    assert g.headers == {"Authorization": "Bearer token"}
 
 
 def test_unknown_graduation_strategy_is_refused():
@@ -80,7 +81,7 @@ class Flaky:
     def __init__(self, failures):
         self.failures, self.calls = failures, 0
 
-    def request(self, method, url, params):
+    def request(self, method, url, params, headers=None):
         self.calls += 1
         if self.calls <= self.failures:
             return 500, {"error": {"code": 2, "message": "temporary", "is_transient": True}}

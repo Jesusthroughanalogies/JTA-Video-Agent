@@ -38,9 +38,10 @@ class FakeGraph:
         self.clock = lambda: dt.datetime.now(UTC)
 
     # Transport protocol
-    def request(self, method: str, url: str, params: dict) -> tuple[int, dict]:
+    def request(self, method: str, url: str, params: dict, headers: dict | None = None) -> tuple[int, dict]:
         path = url.split("/v24.0/", 1)[1]
         self.calls.append((method, path, dict(params)))
+        self.headers = dict(headers or {})
         if method == "POST" and path == f"{IG_USER}/media":
             cid = f"c{len(self.containers) + 1}"
             self.containers[cid] = {"params": params, "polls": 0, "published": None}
