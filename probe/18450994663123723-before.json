@@ -1,0 +1,133 @@
+{
+  "media_id": "18450994663123723",
+  "label": "before",
+  "read_at": "2026-11-09T10:17:58.523800+00:00",
+  "fields": {
+    "id": {
+      "ok": true,
+      "value": "18450994663123723"
+    },
+    "media_type": {
+      "ok": true,
+      "value": "VIDEO"
+    },
+    "media_product_type": {
+      "ok": true,
+      "value": "REELS"
+    },
+    "permalink": {
+      "ok": true,
+      "value": "https://www.instagram.com/reel/DfhGLj4BwaO/"
+    },
+    "shortcode": {
+      "ok": true,
+      "value": "DfhGLj4BwaO"
+    },
+    "timestamp": {
+      "ok": true,
+      "value": "2026-11-09T10:17:35+0000"
+    },
+    "caption": {
+      "ok": true,
+      "value": "You were never meant to do this alone.\nThe Holy Spirit isn't a force or a feeling. He's the one called alongside you.\nWhere do you need help right now?\n#jesus #holyspirit #bible #faith #christian"
+    },
+    "like_count": {
+      "ok": true,
+      "value": 0
+    },
+    "comments_count": {
+      "ok": true,
+      "value": 0
+    },
+    "is_shared_to_feed": {
+      "ok": true,
+      "value": false
+    },
+    "is_comment_enabled": {
+      "ok": true,
+      "value": true
+    },
+    "thumbnail_url": {
+      "ok": true,
+      "value": "https://scontent-ord5-2.cdninstagram.com/v/t51.71878-15/901063538_3053664158304665_1044622586281209989_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=v1Nfiuo4ktcQ7kNvwHlx2nt&_nc_oc=Adq47KO1Jvpr-zfBTkOLnFP7KjQemCokLYLxV71Z2U20iyY32MxPwQUUvD-VQ77OnS4&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=qrgjc_7LBONGbs_DBXAj_A&_nc_tpa=Q5bMBQJ5m5j5EGk1cWLUm41RP1USDZEEk-kEcRQ-x-SWiqk8pYl-gl_l7ZshmxYQOvFlKj-GWEsN537GPA&oh=00_AQTU3b5bUEp5NYDMyp1bEFBucZ_ouZHCIOG2WhmUVkMjoQ&oe=6AF77EDD"
+    },
+    "media_url": {
+      "ok": true,
+      "value": "https://scontent-ord5-2.cdninstagram.com/o1/v/t2/f2/m86/AQOenM0gDWKmbLQF9gXYjtHWwgtKYLU774BtkE7Cx85Z2ut-0QgmQkPu62Gc8QOFE_AXERS1vUMzg0Kr_5JZfUJduye-gpo8PjflDcw.mp4?_nc_cat=107&_nc_sid=5e9851&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_ohc=xhqqDXoo0LUQ7kNvwHITAeP&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTUwMTMzNDA0MjA0ODUxMywiYXNzZXRfYWdlX2RheXMiOjAsInZpX3VzZWNhc2VfaWQiOjEwMDk5LCJkdXJhdGlvbl9zIjo2MCwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&vs=39199c5d0c0d7978&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC82MkZBQTAwQUFENjg0NzBBQkFDN0Y4Qjk2QjdFODdFM192aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyLzgxMEJCQ0JCMjBFMjQ1NUFCMzdCNTEyMEI3RkY1RjQxX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACaC4J-kkt2qBRUCKAJDMywXQE5EOVgQYk4YEmRhc2hfYmFzZWxpbmVfMV92MREAdf4HZeadAQA&_nc_gid=ggkFoCw8yn8eX8ejMj5ceQ&edm=AIZKd-4EAAAA&_nc_zt=28&oh=00_AQSVjGievDLPUqDlg7-kMs92xfSRBMnedKjeWwTG1iVLVg&oe=6AF38D78"
+    },
+    "owner": {
+      "ok": true,
+      "value": {
+        "id": "17841460969760058"
+      }
+    },
+    "username": {
+      "ok": true,
+      "value": "jesusthroughanalogies"
+    },
+    "boost_eligibility_info": {
+      "ok": true,
+      "value": {
+        "eligible_to_boost": true
+      }
+    }
+  },
+  "metrics": {
+    "views": {
+      "ok": true,
+      "value": 0
+    },
+    "reach": {
+      "ok": true,
+      "value": 0
+    },
+    "likes": {
+      "ok": true,
+      "value": 0
+    },
+    "comments": {
+      "ok": true,
+      "value": 0
+    },
+    "shares": {
+      "ok": true,
+      "value": 0
+    },
+    "saved": {
+      "ok": true,
+      "value": 0
+    },
+    "total_interactions": {
+      "ok": true,
+      "value": 0
+    },
+    "ig_reels_avg_watch_time": {
+      "ok": true,
+      "value": 0
+    },
+    "ig_reels_video_view_total_time": {
+      "ok": true,
+      "value": 0
+    },
+    "follows": {
+      "ok": false,
+      "error": "(#100) The Media Insights API does not support the follows metric for this media product type."
+    },
+    "profile_visits": {
+      "ok": false,
+      "error": "(#100) The Media Insights API does not support the profile_visits metric for this media product type."
+    },
+    "profile_activity": {
+      "ok": false,
+      "error": "(#100) The Media Insights API does not support the profile_activity metric for this media product type."
+    },
+    "reels_skip_rate": {
+      "ok": true,
+      "value": 0
+    },
+    "reposts": {
+      "ok": true,
+      "value": 0
+    }
+  }
+}
