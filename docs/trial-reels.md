@@ -105,6 +105,24 @@ Then:
 - If Meta rejects the container, the error text says why. The parameters are built from Meta's trial reels
   changelog; Meta's reference pages couldn't be read from the build machine, so this is the first live check.
 
+## Week 1 results (9 Nov 2026)
+
+Two trial reels posted from the cloud through the API, both remixes of existing Shorts with new hook cards:
+001 Holy Spirit (media 18450994663123723) and 002 boat / why suffering (media 18144495985615612).
+
+| Question | Answer |
+|---|---|
+| Does `trial_params` work through the API? | **Yes**, with graduation MANUAL, on the Facebook-login setup, with `share_to_feed` left out |
+| Follows per reel? | **No.** `follows`, `profile_visits` and `profile_activity` all return "not supported for this media product type" |
+| Metrics available per reel | views, reach, likes, comments, shares, saved, total_interactions, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reels_skip_rate, reposts |
+| Graduation visible? | Pending: `is_shared_to_feed` is false on both before graduation; re-read after Matt graduates one |
+| ElevenLabs | 0 credits on 9 Nov, so the system starts in remix-only mode |
+
+Snapshots are kept on the `trial-media` branch under `probe/`.
+
+**Open decision:** the score's 30% follow component can't be measured per reel. Candidates: shares + saves per
+1,000 views (both reported, both predict growth), or skip rate. Account-level follower change can be logged daily as context only.
+
 ## Tests
 
 ```bash

@@ -72,7 +72,7 @@ class InsightsPull:
         if newly_unsupported:
             self.db.set_setting("insights_unsupported", sorted(unsupported | newly_unsupported))
             if "follows" in newly_unsupported:
-                self.alert("Instagram doesn't report follows per reel. The score falls back to profile visits "
-                           "per 1,000 views (spec: Analyst, the score).")
+                self.alert("Instagram doesn't report follows (or profile visits) per reel. The score's follow "
+                           "component needs its replacement (see docs/trial-reels.md, Week 1 results).")
         return Result("pulled", detail={"snapshots": taken, "errors": errors, "graduated": graduated,
                                         "newly_unsupported": sorted(newly_unsupported)})
